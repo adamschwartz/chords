@@ -1,4 +1,9 @@
+* {
+  box-sizing: inherit;
+}
+
 html {
+  box-sizing: border-box;
   background: #fff;
   color: #000;
 }
@@ -33,7 +38,7 @@ canvas {
   left: 50%;
   margin-left: -150px;
   top: 50%;
-  margin-top: -25px
+  margin-top: -7px
 }
 
 .loading-visible {
@@ -173,37 +178,57 @@ canvas {
   }
 }
 
-#credits {
-  font-family: Georgia, serif;
-  position: absolute;
-  padding-right: 30px;
-  padding-bottom: 20px;
+.Surface {
+  position: fixed;
+  top: 0;
   right: 0;
   bottom: 0;
-  color: #fff;
-  font-size: 14px;
-  font-style: italic;
-  text-align: right;
-  cursor: default;
-  -moz-animation: fade 1s;
-  -webkit-animation: fade 1s;
-  animation: fade 1s
+  left: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#credits div {
-  opacity: .5;
-  margin-top: 6px
+.Notes {
+  display: flex;
+  height: 5em;
 }
 
-#credits a:link {
-  font-style: normal;
-  color: #fff
+.Notes--note {
+  position: relative;
+  height: 100%;
+  width: 2em;
+  border: 2px solid;
 }
 
-#credits a:visited {
-  color: #fff
+.Notes--note[data-melody-note] {
+  background: #ccc;
 }
 
-.credits-hidden {
-  opacity: 0
+.Notes--note[black] {
+  margin: -2em -1em 0;
+  background: #000;
+  border-color: #fff;
+  z-index: 1;
+}
+
+.Notes--note[black][data-melody-note] {
+  background: #777;
+}
+
+.Notes--note[is-playing] {
+  background: blue;
+}
+
+.Notes--note:not([data-melody-note]) {
+  pointer-events: none;
+}
+
+.Notes--note:not(:first-child) {
+  border-left-width: 1px;
+}
+
+.Notes--note:not(:last-child) {
+  border-right-width: 1px;
 }

@@ -4470,7 +4470,7 @@
         this.inverseModelMatrix = S.invert(new Float32Array(16), this.modelMatrix),
         this.getDragX = d(this.module, "getMouthDragX", "number", ["number"], [this.mouthIndex]),
         this.getMinY = d(this.module, "getMouthMinY", "number", ["number"], [this.mouthIndex]),
-        this.getClosedUnclosedRatio = d(this.module, "getMouthClosedUnclosedRatio", "number", ["number"], [this.mouthIndex]),
+        this.getClosedUnclosedRatio = function() { return 1 }, // TODO
         this.getAverageDistance = d(this.module, "getMouthAverageDistance", "number", ["number"], [this.mouthIndex]),
         this.getDistanceCentroid = d(this.module, "getMouthDistanceCentroid", "number", ["number"], [this.mouthIndex]),
         this.getArea = d(this.module, "getMouthArea", "number", ["number"], [this.mouthIndex]),
@@ -4976,7 +4976,8 @@
     }
     ,
     Y.prototype.getIsDragging = function() {
-        return 1 === this.getMouthIsDragging(this.mouthIndex)
+        // return 1 === this.getMouthIsDragging(this.mouthIndex)
+        return true // TODO
     }
     ;
     var z = [0, 0, 0]
@@ -5066,8 +5067,10 @@
             u = Math.sin(this.vibratoPhase) * n * .07,
             this.autoScale.change(1, 1)
         }
-        s = this.openness.evaluate() + u * this.autoScale.evaluate(),
-        a || 0 < this.mouth.getClosedUnclosedRatio() && this.voice.setNote(Math.max(this.voice.getNote() - .2, this.minMidiNote));
+        s = this.openness.evaluate() + u * this.autoScale.evaluate();
+        if (a || 0 < this.mouth.getClosedUnclosedRatio()) {
+            this.voice.setNote(Math.max(this.voice.getNote() - .2, this.minMidiNote)); // TODO
+        }
         var h = 0
           , c = .01;
         i && (h = .5 * o,
@@ -5103,30 +5106,54 @@
             0,
             0
         ];
+
         this.harmonyMouthControllers = [
             new q(r[1],60,72,delays[0], 0  , 5  , .8 , .2 ),
             new q(r[2],50,66,delays[1],  .2, 2.5, .65, .15),
             new q(r[3],43,58,delays[2],  .4, 1  , .5 , .1 )
-        ],
+        ];
+
+        var dontPlayFirstChord = true;
         this.neuralNet.addOnNotesCallback(function(t) {
             if (this.isSinging && this.melodyMouth.getIsDragging()) {
                 for (var e = [], r = 0; r < 3; ++r) {
                     var n = t[r][0];
                     e.push(n)
                 }
-                this.harmonyNotes = e
+
+                this.harmonyNotes = e;
+
+                if (dontPlayFirstChord) {
+                    dontPlayFirstChord = false;
+                    return;
+                }
+
+                // TODO
+                var notes = [this.currentNote, e[0], e[1], e[2]];
+                for (var i = 0; i < notes.length; i += 1) {
+                    var uiNote = document.querySelector('[data-midi-number="' + notes[i] + '"]');
+                    if (uiNote) {
+                        (function(uiNote){
+                            uiNote.setAttribute('is-playing', '');
+                            setTimeout(function(){
+                                uiNote.removeAttribute('is-playing');
+                            }, 300)
+                        })(uiNote);
+                    }
+                    CHORDS.synths[i].triggerAttackRelease(Tone.Frequency(notes[i] + this.transpose, 'midi').toNote(), '4n');
+                }
             }
-        }
-        .bind(this)),
-        this.currentNote = Z[0],
-        this.timeCurrentNoteReached = Date.now(),
-        this.generatedHarmonisationForCurrentNote = !1,
-        this.harmonisedThisPull = !1,
-        this.melodyMouth = this.mouths[0],
-        this.melodyVoice = new K(Z[0]),
-        this.harmonyNotes = null,
-        this.frame = 0,
-        this.isSinging = !1
+        }.bind(this));
+
+        this.currentNote = Z[0];
+        this.timeCurrentNoteReached = Date.now();
+        this.generatedHarmonisationForCurrentNote = false;
+        this.harmonisedThisPull = false;
+        this.melodyMouth = this.mouths[0];
+        this.melodyVoice = new K(Z[0]);
+        this.harmonyNotes = null;
+        this.frame = 0;
+        this.isSinging = true;
     }
     function J(t, e) {
         return (t % e + e) % e
@@ -5226,7 +5253,11 @@
             t()
         }
         , function(t) {
-            this.conductor = new Q(this.audio,this.neuralNet,this.mouths,this.audio.getProcessingSampleRate() < 3e4 ? 2 : 4),
+            this.conductor = new Q(
+                this.audio,
+                this.neuralNet,
+                this.mouths,
+                this.audio.getProcessingSampleRate() < 3e4 ? 2 : 4),
             t()
         }
         , function(t) {
@@ -5270,21 +5301,57 @@
             var i = t.indexOf(r);
             return -1 !== i && e > (i - n) / t.length && e < (i + 1 + n) / t.length ? r : t[g.clamp(Math.floor(e * t.length), 0, t.length - 1)]
         }(Z, .5 * Math.abs(this.melodyMouth.getMinY()), this.currentNote, .1);
-        e !== this.currentNote && (this.currentNote = e,
-        this.timeCurrentNoteReached = Date.now(),
-        this.generatedHarmonisationForCurrentNote = !1),
-        this.isSinging ? this.melodyMouth.getArea() < .01 && (this.isSinging = !1,
-        this.harmonisedThisPull = !1) : 1 === this.melodyMouth.getClosedUnclosedRatio() && this.melodyMouth.getIsDragging() && (this.isSinging = !0,
-        this.harmonisedThisPull = !1),
-        this.melodyVoice.setNote(this.currentNote),
-        this.isSinging ? this.getSecondsOnCurrentNote() >= this.getTimeToHarmonise() && !this.generatedHarmonisationForCurrentNote && this.melodyMouth.getIsDragging() && (this.generatedHarmonisationForCurrentNote = !0,
-        this.harmonisedThisPull = !0,
-        this.neuralNet.harmonize(this.currentNote)) : this.harmonyNotes = null;
-        for (var r = 0; r < 3; ++r)
-            this.harmonyMouthControllers[r].update(t, null === this.harmonyNotes ? null : this.harmonyNotes[r], this.audio.getVibratoFrequency(1 + r), this.audio.getVibratoAmplitude(1 + r), this.melodyMouth.getIsDragging(), this.melodyMouth.getDragX());
+
+        e = window.CHORDS.activeMelodyNote; // TODO
+
+        if (e !== this.currentNote) {
+            this.currentNote = e;
+            this.timeCurrentNoteReached = Date.now();
+            this.generatedHarmonisationForCurrentNote = false;
+        }
+
+        if (this.isSinging) {
+            if (this.melodyMouth.getArea() < .01) {
+                this.isSinging = false;
+                this.harmonisedThisPull = false;
+            }
+        } else {
+            if (this.melodyMouth.getClosedUnclosedRatio() === 1 && this.melodyMouth.getIsDragging()) {
+                this.isSinging = true;
+                this.harmonisedThisPull = false;
+            }
+        }
+
+        this.melodyVoice.setNote(this.currentNote);
+
+        this.isSinging = true; // TODO
+
+        if (this.isSinging) {
+            if (this.getSecondsOnCurrentNote() >= this.getTimeToHarmonise() && !this.generatedHarmonisationForCurrentNote && this.melodyMouth.getIsDragging()) {
+                this.generatedHarmonisationForCurrentNote = true;
+                this.harmonisedThisPull = true;
+                this.neuralNet.harmonize(this.currentNote);
+            } else {
+                this.harmonyNotes = null;
+            }
+        }
+
+        for (var r = 0; r < 3; ++r) {
+            this.harmonyMouthControllers[r].update(
+                t,
+                null === this.harmonyNotes ?
+                    null :
+                    this.harmonyNotes[r]
+                ,
+                this.audio.getVibratoFrequency(1 + r),
+                this.audio.getVibratoAmplitude(1 + r),
+                true || this.melodyMouth.getIsDragging(),
+                this.melodyMouth.getDragX()
+            );
+        }
         var n = [this.melodyVoice, this.harmonyMouthControllers[0].voice, this.harmonyMouthControllers[1].voice, this.harmonyMouthControllers[2].voice];
         // TODO
-        console.log(n[0].midiNote.targetValue, n[1].midiNote.targetValue, n[2].midiNote.targetValue, n[3].midiNote.targetValue);
+        // console.log(n[0].midiNote.targetValue, n[1].midiNote.targetValue, n[2].midiNote.targetValue, n[3].midiNote.targetValue);
         for (r = 0; r < 4; ++r)
             this.audio.setParameter(r, "open_ratio", this.mouths[r].getClosedUnclosedRatio()),
             this.audio.setParameter(r, "area", this.mouths[r].getArea()),
@@ -5311,7 +5378,8 @@
     }
     ,
     Q.prototype.getIsDragging = function() {
-        return this.melodyMouth.getIsDragging()
+        // return this.melodyMouth.getIsDragging()
+        return true; // TODO
     }
     ,
     Q.prototype.getSecondsOnCurrentNote = function() {
@@ -5368,7 +5436,38 @@
         this.canvas.addEventListener("touchstart", this.onTouchStart.bind(this)),
         this.canvas.addEventListener("touchmove", this.onTouchMove.bind(this)),
         this.canvas.addEventListener("touchend", this.onTouchEnd.bind(this)),
-        this.canvas.addEventListener("touchcancel", this.onTouchCancel.bind(this)),
+        this.canvas.addEventListener("touchcancel", this.onTouchCancel.bind(this));
+
+        // TODO
+        var CHORDS = {};
+        window.CHORDS = CHORDS;
+        CHORDS.activeMelodyNote = 67; // TODO
+
+        CHORDS.synths = [
+            new Tone.Synth().toMaster(),
+            new Tone.Synth().toMaster(),
+            new Tone.Synth().toMaster(),
+            new Tone.Synth().toMaster()
+        ]
+
+        var notes = document.querySelector('.Notes');
+
+        // TODO
+        notes.addEventListener('mousedown', (event) => {
+            var midiNote = parseInt(event.target.getAttribute('data-midi-number'), 10);
+            CHORDS.activeMelodyNote = midiNote;
+        });
+
+        // TODO
+        notes.addEventListener('mousemove', (event) => {
+            var midiNote = parseInt(event.target.getAttribute('data-midi-number'), 10);
+            CHORDS.activeMelodyNote = midiNote;
+        });
+
+        notes.addEventListener('mouseup', (event) => {
+            // TODO
+        });
+
         this.startTime = Date.now();
         var r = Date.now();
         function n(t) {
@@ -5472,8 +5571,8 @@
                 document.getElementById("loading").className = "loading-hidden",
                 window.setTimeout(function() {
                     document.body.appendChild(ut.canvas),
-                    ut.start(),
-                    document.getElementById("loading").outerHTML = document.getElementById("main-template").innerHTML
+                    document.getElementById("loading").outerHTML = document.getElementById("main-template").innerHTML,
+                    ut.start()
                 }, 200)
             }
             var r = !1;
