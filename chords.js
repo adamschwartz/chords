@@ -5347,6 +5347,7 @@
             this.tryStartAudio()
         }
         .bind(this)),
+        // TODO - use our own handler here
         document.addEventListener("mouseup", this.onMouseUp.bind(this)),
         document.addEventListener("mousemove", this.onMouseMove.bind(this)),
         this.canvas.addEventListener("touchstart", this.onTouchStart.bind(this)),
@@ -5361,8 +5362,7 @@
             this.update(e),
             requestAnimationFrame(n)
         }
-        (n = n.bind(this))(),
-        (new Image).src = "//david.li/choirhit.gif"
+        (n = n.bind(this))()
     }
     ,
     et.prototype.onMouseDown = function(t) {
