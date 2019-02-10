@@ -5091,8 +5091,23 @@
         this.audio = t,
         this.neuralNet = e,
         this.mouths = r,
-        this.transpose = n,
-        this.harmonyMouthControllers = [new q(r[1],60,72,.1,0,5,.8,.2), new q(r[2],50,66,.6,.2,2.5,.65,.15), new q(r[3],43,58,1.1,.4,1,.5,.1)],
+        this.transpose = n;
+
+        // var delays = [
+        //     .1,
+        //     .6,
+        //     1.1
+        // ];
+        var delays = [
+            0,
+            0,
+            0
+        ];
+        this.harmonyMouthControllers = [
+            new q(r[1],60,72,delays[0], 0  , 5  , .8 , .2 ),
+            new q(r[2],50,66,delays[1],  .2, 2.5, .65, .15),
+            new q(r[3],43,58,delays[2],  .4, 1  , .5 , .1 )
+        ],
         this.neuralNet.addOnNotesCallback(function(t) {
             if (this.isSinging && this.melodyMouth.getIsDragging()) {
                 for (var e = [], r = 0; r < 3; ++r) {
