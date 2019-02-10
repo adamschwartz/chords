@@ -273,64 +273,6 @@
             }
         }
         ,
-        // i.prototype.createProgramFromFiles = function(o, a, s, u, t) {
-        //     var l = this
-        //       , e = [];
-        //     Array.isArray(o) ? e = e.concat(o) : e.push(o),
-        //     Array.isArray(a) ? e = e.concat(a) : e.push(a),
-        //     i.loadTextFiles(e, function(t) {
-        //         var e = [];
-        //         if (Array.isArray(o))
-        //             for (var r = 0; r < o.length; ++r)
-        //                 e.push(t[o[r]]);
-        //         else
-        //             e.push(t[o]);
-        //         var n = [];
-        //         if (Array.isArray(a))
-        //             for (r = 0; r < a.length; ++r)
-        //                 n.push(t[a[r]]);
-        //         else
-        //             n.push(t[a]);
-        //         var i = l.createProgram(e.join("\n"), n.join("\n"), s);
-        //         u(i)
-        //     })
-        // }
-        // ,
-        // i.prototype.createProgramsFromFiles = function(t, r, e) {
-        //     var n = function l(t) {
-        //         var e = 0;
-        //         for (var r in t)
-        //             t.hasOwnProperty(r) && (e += 1);
-        //         return e
-        //     }(t)
-        //       , i = 0
-        //       , o = {};
-        //     for (var a in t)
-        //         if (t.hasOwnProperty(a)) {
-        //             var s = t[a]
-        //               , u = this;
-        //             !function() {
-        //                 var e = a;
-        //                 u.createProgramFromFiles(s.vertexShader, s.fragmentShader, s.attributeLocations, function(t) {
-        //                     o[e] = t,
-        //                     ++i === n && r(o)
-        //                 })
-        //             }()
-        //         }
-        // }
-        // ,
-        // i.prototype.deleteBuffer = function(t) {
-        //     this.gl.deleteBuffer(t)
-        // }
-        // ,
-        // i.prototype.deleteFramebuffer = function(t) {
-        //     this.gl.deleteFramebuffer(t)
-        // }
-        // ,
-        // i.prototype.deleteTexture = function(t) {
-        //     this.gl.deleteTexture(t)
-        // }
-        // ,
         n.prototype.getAttribLocation = function(t) {
             return this.attributeLocations[t]
         }
@@ -679,152 +621,6 @@
         function q(t) {
             return String.prototype.startsWith ? t.startsWith(j) : 0 === t.indexOf(j)
         }
-        // !function st() {
-        //     var t = "mouthmodule.wast"
-        //       , s = "mouthmodule.wasm"
-        //       , e = "mouthmodule.temp.asm.js";
-        //     q(t) || (t = p(t)),
-        //     q(s) || (s = p(s)),
-        //     q(e) || (e = p(e));
-        //     var u = {
-        //         global: null,
-        //         env: null,
-        //         asm2wasm: _,
-        //         parent: f
-        //     }
-        //       , l = null;
-        //     function h() {
-        //         try {
-        //             if (f.wasmBinary)
-        //                 return new Uint8Array(f.wasmBinary);
-        //             if (f.readBinary)
-        //                 return f.readBinary(s);
-        //             throw "both async and sync fetching of the wasm failed"
-        //         } catch (g) {
-        //             ot(g)
-        //         }
-        //     }
-        //     function c(t, e, r) {
-        //         if ("object" != typeof WebAssembly)
-        //             return g("no native wasm support detected"),
-        //             !1;
-        //         if (!(f.wasmMemory instanceof WebAssembly.Memory))
-        //             return g("no native wasm Memory in use"),
-        //             !1;
-        //         function n(t, e) {
-        //             (l = t.exports).memory && function n(t) {
-        //                 var e = f.buffer;
-        //                 t.byteLength < e.byteLength && g("the new buffer in mergeMemory is smaller than the previous one. in native wasm, we should grow memory here");
-        //                 var r = new Int8Array(e);
-        //                 new Int8Array(t).set(r),
-        //                 L(t),
-        //                 B()
-        //             }(l.memory),
-        //             f.asm = l,
-        //             f.usingWasm = !0,
-        //             function r(t) {
-        //                 if (W--,
-        //                 f.monitorRunDependencies && f.monitorRunDependencies(W),
-        //                 0 == W && (null !== Y && (clearInterval(Y),
-        //                 Y = null),
-        //                 z)) {
-        //                     var e = z;
-        //                     z = null,
-        //                     e()
-        //                 }
-        //             }()
-        //         }
-        //         if (e.memory = f.wasmMemory,
-        //         u.global = {
-        //             NaN: NaN,
-        //             Infinity: Infinity
-        //         },
-        //         u["global.Math"] = Math,
-        //         u.env = e,
-        //         function a(t) {
-        //             W++,
-        //             f.monitorRunDependencies && f.monitorRunDependencies(W)
-        //         }(),
-        //         f.instantiateWasm)
-        //             try {
-        //                 return f.instantiateWasm(u, n)
-        //             } catch (at) {
-        //                 return g("Module.instantiateWasm callback failed with error: " + at),
-        //                 !1
-        //             }
-        //         function i(t) {
-        //             n(t.instance, t.module)
-        //         }
-        //         function o(t) {
-        //             (function e() {
-        //                 return f.wasmBinary || !d && !m || "function" != typeof fetch ? new Promise(function(t, e) {
-        //                     t(h())
-        //                 }
-        //                 ) : fetch(s, {
-        //                     credentials: "same-origin"
-        //                 }).then(function(t) {
-        //                     if (!t.ok)
-        //                         throw "failed to load wasm binary file at '" + s + "'";
-        //                     return t.arrayBuffer()
-        //                 })["catch"](function() {
-        //                     return h()
-        //                 })
-        //             }
-        //             )().then(function(t) {
-        //                 return WebAssembly.instantiate(t, u)
-        //             }).then(t)["catch"](function(t) {
-        //                 g("failed to asynchronously prepare wasm: " + t),
-        //                 ot(t)
-        //             })
-        //         }
-        //         return f.wasmBinary || "function" != typeof WebAssembly.instantiateStreaming || q(s) || "function" != typeof fetch ? o(i) : WebAssembly.instantiateStreaming(fetch(s, {
-        //             credentials: "same-origin"
-        //         }), u).then(i)["catch"](function(t) {
-        //             g("wasm streaming compile failed: " + t),
-        //             g("falling back to ArrayBuffer instantiation"),
-        //             o(i)
-        //         }),
-        //         {}
-        //     }
-        //     f.asmPreload = f.asm,
-        //     f.reallocBuffer,
-        //     f.reallocBuffer = function(t) {
-        //         return function(t) {
-        //             t = I(t, f.usingWasm ? 65536 : 16777216);
-        //             var e = f.buffer.byteLength;
-        //             if (f.usingWasm)
-        //                 try {
-        //                     return -1 !== f.wasmMemory.grow((t - e) / 65536) ? f.buffer = f.wasmMemory.buffer : null
-        //                 } catch (at) {
-        //                     return null
-        //                 }
-        //         }(t)
-        //     }
-        //     ,
-        //     f.asm = function(t, e, r) {
-        //         if (!(e = function a(t) {
-        //             return t
-        //         }(e)).table) {
-        //             var n = f.wasmTableSize;
-        //             n === undefined && (n = 1024);
-        //             var i = f.wasmMaxTableSize;
-        //             "object" == typeof WebAssembly && "function" == typeof WebAssembly.Table ? i !== undefined ? e.table = new WebAssembly.Table({
-        //                 initial: n,
-        //                 maximum: i,
-        //                 element: "anyfunc"
-        //             }) : e.table = new WebAssembly.Table({
-        //                 initial: n,
-        //                 element: "anyfunc"
-        //             }) : e.table = new Array(n),
-        //             f.wasmTable = e.table
-        //         }
-        //         var o;
-        //         return e.memoryBase || (e.memoryBase = f.STATIC_BASE),
-        //         e.tableBase || (e.tableBase = 0),
-        //         T(o = c(0, e), "no binaryen method succeeded."),
-        //         o
-        //     }
-        // }(),
         D = 1059392,
         k.push(),
         f.STATIC_BASE = 1024,
@@ -1531,13 +1327,6 @@
         this.loaded = !1;
         var n = new Image;
         n.onload = function() {
-            this.texture = t.createTexture(),
-            t.pixelStorei(t.TEXTURE_2D, this.texture, t.UNPACK_FLIP_Y_WEBGL, !0),
-            t.setTextureFiltering(t.TEXTURE_2D, this.texture, t.CLAMP_TO_EDGE, t.CLAMP_TO_EDGE, t.LINEAR, t.LINEAR),
-            t.texImage2D(t.TEXTURE_2D, this.texture, 0, t.RGBA, t.RGBA, t.UNSIGNED_BYTE, n),
-            t.pixelStorei(t.TEXTURE_2D, this.texture, t.UNPACK_FLIP_Y_WEBGL, !1),
-            this.width = n.width,
-            this.height = n.height,
             r()
         }
         .bind(this),
@@ -1545,25 +1334,18 @@
     }
     function n(t, e) {
         this.wgl = t,
-        this.positionsBuffer = t.createBuffer(),
-        this.uvsBuffer = t.createBuffer(),
-        this.colorsBuffer = t.createBuffer(),
-        this.indexBuffer = t.createBuffer(),
         this.clear(),
         this.spritesImage = new r(this.wgl,"sprites.png",e)
     }
     function i(t) {
         this.wgl = t,
-        this.clear(),
-        this.positionsBuffer = t.createBuffer(),
-        this.colorsBuffer = t.createBuffer()
+        this.clear()
     }
     function f(t, e) {
         this.wgl = t,
         this.lines = new i(t),
         this.promptAlpha = new _(1),
         this.notSingingTimeout = 0,
-        this.indicatorBuffer = t.createBuffer(),
         this.scaleAlpha = new _(0),
         this.indicatorY = new _(0),
         this.spriteRenderer = new n(t,e)
@@ -1683,8 +1465,8 @@
         r.isSinging ? (0 !== this.promptAlpha.targetValue && this.promptAlpha.change(0, .5),
         this.notSingingTimeout = 0) : (this.notSingingTimeout += t,
         2 < this.notSingingTimeout && 1 !== this.promptAlpha.targetValue && this.promptAlpha.change(1, 1)),
-        r.isSinging && r.getIsDragging() ? this.scaleAlpha.change(1, .25) : this.scaleAlpha.change(0, .6);
-        var i = r.isSinging && r.getIsDragging() ? r.getCurrentScaleIndex() : -1;
+        r.isSinging && true ? this.scaleAlpha.change(1, .25) : this.scaleAlpha.change(0, .6);
+        var i = r.isSinging && true ? r.getCurrentScaleIndex() : -1;
         for (n = 0; n < this.scaleAlphas.length; ++n)
             n === i ? this.scaleAlphas[n].change(1, r.getTimeToHarmonise()) : this.scaleAlphas[n].change(0, .15);
         if (this.spriteRenderer.clear(),
@@ -2957,109 +2739,10 @@
             return !1
         })
     }
-    function x(t, e) {
-        for (this.audioContext = new (window.AudioContext || window.webkitAudioContext),
-        this.blockSize = 2048,
-        this.audioProcessor = null,
-        this.upsampleFactor = 1; Math.floor(this.audioContext.sampleRate / this.upsampleFactor) > e; )
-            this.upsampleFactor *= 2;
-        (this.module = t).ccall("initializeAudio", null, ["number", "number"], [this.getProcessingSampleRate(), this.getProcessingBlockSize()]),
-        this.process = t.cwrap("process", null, ["number"]),
-        this.getOutputBuffer = t.cwrap("getBuffer", "number", []),
-        this.getTotalOutput = t.cwrap("getTotalOutput", "number", ["number", "number"]),
-        this.getRMS = t.cwrap("getRMS", "number", ["number", "number"]),
-        this.getVibratoFrequency = t.cwrap("getVibratoFrequency", "number", ["number"]),
-        this.getVibratoAmplitude = t.cwrap("getVibratoAmplitude", "number", ["number"]),
-        this.getGurgliness = t.cwrap("getGurgliness", "number", ["number"]),
-        this.getLoudness = t.cwrap("getLoudness", "number", ["number"]),
-        this.heavySendMessage = t.cwrap("sendMessage", null, ["number", "number", "number", "number", "number"]),
-        this.outputChannels = 2,
-        this.hasher = new T(t),
-        this.patchManagers = [];
-        for (var r = 0; r < 4; ++r)
-            this.patchManagers.push(new E(this.hasher,d(t, "sendMessage", null, ["number", "number", "number", "number", "number"], [r, 0]),d(t, "getTotalOutput", null, ["number", "number"], [r, 0]))),
-            this.patchManagers.push(new v(this.hasher,d(t, "sendMessage", null, ["number", "number", "number", "number", "number"], [r, 1]),d(t, "getTotalOutput", null, ["number", "number"], [r, 1])));
-        for (var n = {
-            levels_peeling: .6,
-            levels_fricatives: 1.88,
-            levels_glottis: 1,
-            levels_tract: 1.333,
-            levels_master: 1,
-            open_ratio: 0,
-            area: 0,
-            note: 60,
-            average_distance: 0,
-            distance_centroid: .5,
-            max_stretch: 0,
-            max_stretch_position: .5,
-            screaminess: .22,
-            lipPeel_density: .2,
-            tract_scale: 1.03,
-            tract_resonance: 1.88,
-            vibrato_fadein: 888,
-            hoarseness: .2,
-            glottis_damp: .11,
-            transpose: 0,
-            gurgle: 0,
-            lips_closing_attenuation: .9,
-            note_delta_intensity: .2,
-            vibrato_pitch_intensity: .1,
-            fricatives_intensity: .33
-        }, i = [{
-            levels_master: 1.1
-        }, {
-            levels_master: .95,
-            tract_scale: 1.03,
-            screaminess: .14,
-            vibrato_fadein: 1333,
-            hoarseness: .11,
-            levels_peeling: .22,
-            tract_resonance: 1.3
-        }, {
-            levels_master: .95,
-            tract_scale: 1.02,
-            screaminess: .11,
-            vibrato_fadein: 1666,
-            hoarseness: .22,
-            levels_peeling: .22,
-            tract_resonance: 1.6
-        }, {
-            levels_master: 1.1,
-            tract_scale: .93,
-            screaminess: .13,
-            vibrato_fadein: 1888,
-            hoarseness: .11,
-            tract_resonance: 1.8,
-            levels_peeling: .22,
-            note_delta_intensity: .55
-        }], o = 0; o < 4; ++o) {
-            var a = i[o];
-            for (r = 0; r < 2; ++r) {
-                var s = this.patchManagers[2 * o + r];
-                for (var u in n)
-                    a.hasOwnProperty(u) || s.setParameter(u, n[u], 0);
-                for (var u in a)
-                    s.setParameter(u, a[u], 0);
-                s.setParameter("init", 1, 0),
-                s.step(!0)
-            }
-        }
-        var l = {
-            mix: .388,
-            feedback: .833,
-            lowcut: 8,
-            highcut: 6666,
-            crossfreq: 6666,
-            predelay_ms: 0
-        };
-        for (var h in l)
-            this.heavySendMessage(4, 0, this.hasher.getHash(h), l[h], 0);
-        this.heavySendMessage(4, 0, this.hasher.getHash("init"), 1, 0),
-        this.process(p([1, 1, 1, 1, 1, 1, 1, 1]))
-    }
-    function A(n) {
-        this.onNotesCallbacks = [],
-        this.worker = new Worker("networker.js"),
+
+    function HarmonizeNeuralNetwork(n) {
+        this.onNotesCallbacks = [];
+        this.worker = new Worker("networker.js");
         this.worker.onmessage = function(t) {
             var e = t.data;
             if ("loaded" === e.type)
@@ -3070,6 +2753,7 @@
         }
         .bind(this)
     }
+
     "object" == typeof exports && "object" == typeof module ? module.exports = m : "function" == typeof define && define.amd ? define([], function() {
         return m
     }) : "object" == typeof exports && (exports.ChoirModule = m),
@@ -3116,71 +2800,13 @@
     }
     ,
     (E.prototype = Object.create(s.prototype)).constructor = s,
-    (v.prototype = Object.create(s.prototype)).constructor = s,
-    x.prototype.getProcessingSampleRate = function() {
-        return Math.floor(this.audioContext.sampleRate / this.upsampleFactor)
-    }
-    ,
-    x.prototype.getProcessingBlockSize = function() {
-        return Math.floor(this.blockSize / this.upsampleFactor)
-    }
-    ,
-    x.prototype.start = function() {
-        this.lastAudioProcessTime = Date.now(),
-        this.audioProcessor = this.audioContext.createScriptProcessor(this.blockSize, 0, this.outputChannels);
-        var l = [1, 1, 1, 1, 1, 1, 1, 1]
-          , h = this;
-        this.audioProcessor.onaudioprocess = function(t) {
-            for (var e = 0; e < 8; ++e) {
-                var r = h.patchManagers[e].step(!1);
-                l[e] = r ? 1 : 0
-            }
-            h.process(p(l)),
-            h.lastAudioProcessTime = Date.now();
-            var n = h.getProcessingBlockSize()
-              , i = h.module.HEAPF32.subarray(h.getOutputBuffer() >> 2, (h.getOutputBuffer() >> 2) + n * h.outputChannels);
-            for (e = 0; e < h.outputChannels; ++e) {
-                var o = t.outputBuffer.getChannelData(e)
-                  , a = e * n;
-                if (1 === h.upsampleFactor)
-                    for (var s = 0; s < h.blockSize; ++s)
-                        o[s] = i[a + s];
-                else if (2 === h.upsampleFactor)
-                    for (s = 0; s < n; ++s)
-                        o[2 * s + 0] = i[a + s],
-                        o[2 * s + 1] = 0;
-                else
-                    for (s = 0; s < n; ++s) {
-                        o[s * h.upsampleFactor + 0] = i[a + s];
-                        for (var u = 1; u < h.upsampleFactor; ++u)
-                            o[s * h.upsampleFactor + u] = 0
-                    }
-            }
-        }
-        ,
-        this.audioProcessor.connect(this.audioContext.destination)
-    }
-    ,
-    x.prototype.setParameter = function(t, e, r) {
-        if ("running" === this.audioContext.state && null !== this.audioProcessor) {
-            var n = Math.max(Date.now() - this.lastAudioProcessTime, 0);
-            4 === t ? this.heavySendMessage(t, this.hasher.getHash(e), r, n) : (this.patchManagers[2 * t + 0].setParameter(e, r, n),
-            this.patchManagers[2 * t + 1].setParameter(e, r, n))
-        }
-    }
-    ,
-    x.prototype.tryStart = function() {
-        "running" === this.audioContext.state ? null === this.audioProcessor && this.start() : this.audioContext.resume().then(function() {
-            null === this.audioProcessor ? this.start() : this.lastAudioProcessTime = Date.now()
-        }
-        .bind(this))
-    }
-    ,
-    A.prototype.addOnNotesCallback = function(t) {
+    (v.prototype = Object.create(s.prototype)).constructor = s;
+
+    HarmonizeNeuralNetwork.prototype.addOnNotesCallback = function(t) {
         this.onNotesCallbacks.push(t)
     }
     ,
-    A.prototype.harmonize = function(t) {
+    HarmonizeNeuralNetwork.prototype.harmonize = function(t) {
         this.worker.postMessage(t)
     }
     ;
@@ -4266,133 +3892,6 @@
         return r += ["gl_FragColor = vec4(colorBlurred, 1.0);", "}"].join("\n")
     }
     var N = 2.2;
-    function U(t, e) {
-        this.canvas = t,
-        this.wgl = e,
-        this.framebuffer = e.createFramebuffer(),
-        this.shadowFramebuffer = e.createFramebuffer(),
-        this.colorTexture = e.buildTexture(e.RGBA, e.UNSIGNED_BYTE, this.canvas.width, this.canvas.height, null, e.CLAMP_TO_EDGE, e.CLAMP_TO_EDGE, e.LINEAR, e.LINEAR),
-        this.colorTextureTemp = e.buildTexture(e.RGBA, e.UNSIGNED_BYTE, this.canvas.width, this.canvas.height, null, e.CLAMP_TO_EDGE, e.CLAMP_TO_EDGE, e.LINEAR, e.LINEAR),
-        this.depthRenderbuffer = e.createRenderbuffer(),
-        e.renderbufferStorage(this.depthRenderbuffer, e.RENDERBUFFER, e.DEPTH_STENCIL, this.canvas.width, this.canvas.height);
-        var r = D["lightingcommon.glsl"].replace("<shadow>", function l(t, e) {
-            for (var r = function u(t, e) {
-                var r = []
-                  , n = .5 / (t / 2) - 1
-                  , i = 1 / (t / 2);
-                n *= e,
-                i *= e;
-                for (var o = 0; o < t; ++o)
-                    for (var a = 0; a < t; ++a)
-                        r.push([n + a * i, n + o * i]);
-                return r
-            }(t, e / 1024), n = ["float shadow = 0.0;"], i = 1 / r.length, o = 0; o < r.length; ++o) {
-                var a = r[o]
-                  , s = "vec2(" + a[0].toFixed(8) + "," + a[1].toFixed(8) + ")";
-                n.push("shadow += " + i.toFixed(8) + " * texture2DShadow(depthTexture, resolution, lightSpaceCoordinates + " + s + ", lightSpacePosition.z - 0.0007);")
-            }
-            return n.push("float ambient = 0.2;"),
-            n.push("return ambient + shadow * (1.0 - ambient);"),
-            n.join("\n")
-        }(3, 5));
-        this.mouthProgram = e.createProgram(D["mouth.vert"], r + D["mouth.frag"], {
-            a_position: 0,
-            a_normal: 1
-        }),
-        this.wrinkleProgram = e.createProgram(D["wrinkle.vert"], r + D["mouth.frag"], {
-            a_textureCoordinates: 0
-        }),
-        this.insideProgram = e.createProgram(D["inside.vert"], r + D["inside.frag"], {
-            a_position: 0,
-            a_normal: 1
-        }),
-        this.tongueProgram = e.createProgram(D["tongue.vert"], r + D["tongue.frag"], {
-            a_position: 0,
-            a_normal: 1
-        }),
-        this.eyeProgram = e.createProgram(D["eye.vert"], r + D["eye.frag"], {
-            a_position: 0,
-            a_normal: 1
-        }),
-        this.toothProgram = e.createProgram(D["tooth.vert"], r + D["tooth.frag"], {
-            a_position: 0,
-            a_normal: 1
-        }),
-        this.sssBlurProgram = e.createProgram(D["fullscreen.vert"], B(17), {
-            a_position: 0
-        }),
-        this.compositeProgram = e.createProgram(D["fullscreen.vert"], D["composite.frag"], {
-            a_position: 0
-        }),
-        this.fxaaProgram = e.createProgram(D["fullscreen.vert"], D["fxaa.frag"], {
-            a_position: 0
-        }),
-        this.outputProgram = e.createProgram(D["fullscreen.vert"], D["output.frag"], {
-            a_position: 0
-        }),
-        this.openingProgram = e.createProgram(D["opening.vert"], D["opening.frag"], {
-            a_position: 0
-        }),
-        this.spriteProgram = e.createProgram(D["sprite.vert"], D["sprite.frag"], {
-            a_position: 0,
-            a_uv: 1,
-            a_color: 2
-        }),
-        this.lineProgram = e.createProgram(D["line.vert"], D["line.frag"], {
-            a_position: 0
-        }),
-        this.backgroundProgram = e.createProgram(D["background.vert"], D["background.frag"], {
-            a_position: 0
-        }),
-        this.mouthDepthProgram = e.createProgram(D["mouthdepth.vert"], D["mouthdepth.frag"], {
-            a_position: 0
-        }),
-        this.wrinkleDepthProgram = e.createProgram(D["wrinkledepth.vert"], D["mouthdepth.frag"], {
-            a_textureCoordinates: 0
-        }),
-        this.spitProgram = e.createProgram(D["spit.vert"], D["spit.frag"], {
-            a_position: 0,
-            a_velocity: 1,
-            a_offset: 2
-        }),
-        this.dropletProgram = e.createProgram(D["droplet.vert"], D["droplet.frag"], {
-            a_position: 0
-        }),
-        this.cameraPosition = new Float32Array([0, -.8, 1.35]),
-        this.fov = .5 * Math.PI,
-        this.viewMatrix = S.makeTranslation(new Float32Array(16), -this.cameraPosition[0], -this.cameraPosition[1], -this.cameraPosition[2]),
-        this.projectionMatrix = new Float32Array(16),
-        this.projectionViewMatrix = new Float32Array(16),
-        this.triangleVertexBuffer = e.buildBuffer(e.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), e.STATIC_DRAW),
-        this.quadVertexBuffer = e.buildBuffer(e.ARRAY_BUFFER, new Float32Array([-1, -1, -1, 1, 1, -1, 1, 1]), e.STATIC_DRAW),
-        this.quadUVBuffer = e.buildBuffer(e.ARRAY_BUFFER, new Float32Array([0, 0, 0, 1, 1, 0, 1, 1]), e.STATIC_DRAW),
-        this.lights = [new F(e,Math.PI / 2 - .2,0,5,.8), new F(e,-Math.PI / 2 + .2,0,5,.8)]
-    }
-    U.prototype.getRayDirection = function(t, e) {
-        var r = 2 * Math.atan(1 / this.projectionMatrix[5])
-          , n = [t * Math.tan(r / 2) * (this.canvas.width / this.canvas.height), e * Math.tan(r / 2), -1]
-          , i = S.invert([], this.viewMatrix)
-          , o = S.transformDirection([], n, i);
-        return C.normalize(o, o),
-        o
-    }
-    ,
-    U.prototype.worldToScreenSpace = function(t) {
-        var e = S.multiplyVector([], this.projectionViewMatrix, [t[0], t[1], t[2], 1]);
-        return [e[0] / e[3], e[1] / e[3]]
-    }
-    ,
-    U.prototype.worldToCanvasSpace = function(t) {
-        var e = S.multiplyVector([], this.projectionViewMatrix, [t[0], t[1], t[2], 1]);
-        return [this.canvas.width * (e[0] / e[3] * .5 + .5), this.canvas.height * (e[1] / e[3] * .5 + .5)]
-    }
-    ,
-    U.prototype.output = function(t) {
-        var e = this.wgl
-          , r = e.createDrawState().bindFramebuffer(null).viewport(0, 0, this.canvas.width, this.canvas.height).vertexAttribPointer(this.triangleVertexBuffer, 0, 2, e.FLOAT, !1, 0, 0).uniformTexture("u_texture", 0, e.TEXTURE_2D, t).useProgram(this.outputProgram);
-        e.drawArrays(r, e.TRIANGLES, 0, 3)
-    }
-    ;
     var O = .75;
     function V(t) {
         this.startValue = t,
@@ -4453,437 +3952,7 @@
         this.positionsBuffer = e.buildBuffer(e.ARRAY_BUFFER, new Float32Array(this.vertices), e.DYNAMIC_DRAW),
         this.indexBuffer = e.buildBuffer(e.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.indices), e.DYNAMIC_DRAW)
     }
-    function Y(t, e, r, n, i, o, a, s, u, l) {
-        this.module = t,
-        this.wgl = e,
-        this.usesWrinkleMesh = o;
-        var h = this.mouthIndex = t.ccall("createMouth", "number", ["number", "number", "number", "number"], [r, n, i, o ? 0 : 1]);
-        this.insideMesh = new M(t,e,h),
-        this.usesWrinkleMesh ? this.wrinkleMesh = new R(t,e,h) : this.embeddedMesh = new y(t,e,h),
-        this.opening = new W(t,e,h),
-        this.leftEye = new H(t,e,h,0),
-        this.rightEye = new H(t,e,h,1),
-        this.tongue = new G(t,e,h),
-        this.position = [a, s, u],
-        this.scale = l,
-        this.modelMatrix = S.premultiply(new Float32Array(16), S.makeScale(new Float32Array(16), l, l, l), S.makeTranslation(new Float32Array(16), a, s, u)),
-        this.inverseModelMatrix = S.invert(new Float32Array(16), this.modelMatrix),
-        this.getDragX = d(this.module, "getMouthDragX", "number", ["number"], [this.mouthIndex]),
-        this.getMinY = d(this.module, "getMouthMinY", "number", ["number"], [this.mouthIndex]),
-        this.getClosedUnclosedRatio = function() { return 1 }, // TODO
-        this.getAverageDistance = d(this.module, "getMouthAverageDistance", "number", ["number"], [this.mouthIndex]),
-        this.getDistanceCentroid = d(this.module, "getMouthDistanceCentroid", "number", ["number"], [this.mouthIndex]),
-        this.getArea = d(this.module, "getMouthArea", "number", ["number"], [this.mouthIndex]),
-        this.getMaxStretch = d(this.module, "getMouthMaxStretch", "number", ["number"], [this.mouthIndex]),
-        this.getMaxStretchPosition = d(this.module, "getMouthMaxStretchPosition", "number", ["number"], [this.mouthIndex]),
-        this.setAutoDrag = d(this.module, "setMouthAutoDrag", "number", ["number", "number", "number", "number", "number", "number", "number"], [this.mouthIndex]),
-        this.getMouthIsDragging = this.module.cwrap("getMouthIsDragging", "number", []);
-        var c = t.ccall("getTeethCount", "number", ["number"], [h]);
-        this.teeth = [];
-        for (var f = 0; f < c; ++f)
-            this.teeth.push(new X(t,e,h,f));
-        this.oscillationScale = 0
-    }
-    U.prototype.update = function() {
-        this.wgl;
-        (this.canvas.width !== this.canvas.clientWidth || this.canvas.height !== this.canvas.clientHeight) && 0 < this.canvas.clientWidth && 0 < this.canvas.clientHeight && (this.canvas.width = this.canvas.clientWidth,
-        this.canvas.height = this.canvas.clientHeight,
-        this.onResize());
-        var t = Math.PI / 2
-          , e = this.canvas.width / this.canvas.height;
-        if (e < O) {
-            var r = 2 * Math.atan(O * Math.tan(t / 2));
-            t = 2 * Math.atan(1 / e * Math.tan(r / 2)),
-            t = Math.min(t, .9 * Math.PI)
-        }
-        this.projectionMatrix = S.makePerspective(this.projectionMatrix, t, this.canvas.width / this.canvas.height, .05, 100),
-        this.projectionViewMatrix = S.premultiply(this.projectionViewMatrix, this.viewMatrix, this.projectionMatrix)
-    }
-    ,
-    U.prototype.getEffectiveHeight = function() {
-        return this.canvas.width / this.canvas.height < O ? this.canvas.width / O : this.canvas.height
-    }
-    ,
-    U.prototype.setLightingUniforms = function(t, e) {
-        var r = this.wgl.gl;
-        r.uniformMatrix4fv(t.uniformLocations.u_projectionViewMatrix, !1, this.projectionViewMatrix),
-        r.uniform3fv(t.uniformLocations.u_cameraPosition, this.cameraPosition);
-        for (var n = 0; n < this.lights.length; ++n) {
-            var i = this.lights[n];
-            r.uniform3fv(t.uniformLocations["u_lightPosition" + n.toFixed(0)], i.position),
-            r.uniform3fv(t.uniformLocations["u_lightColor" + n.toFixed(0)], i.color),
-            r.activeTexture(r.TEXTURE0 + e + n),
-            r.bindTexture(r.TEXTURE_2D, i.depthColorTexture),
-            r.uniform1i(t.uniformLocations["u_shadowDepthTexture" + n.toFixed(0)], e + n),
-            r.uniform2f(t.uniformLocations["u_shadowResolution" + n.toFixed(0)], i.shadowMapWidth, i.shadowMapWidth),
-            r.uniformMatrix4fv(t.uniformLocations["u_lightProjectionViewMatrix" + n.toFixed(0)], !1, i.projectionViewMatrix),
-            r.uniform1f(t.uniformLocations["u_lightNear" + n.toFixed(0)], i.near),
-            r.uniform1f(t.uniformLocations["u_lightFar" + n.toFixed(0)], i.far)
-        }
-    }
-    ,
-    U.prototype.render = function(t, e, r, n, i) {
-        var o = this.wgl.gl;
-        o.bindFramebuffer(o.FRAMEBUFFER, this.framebuffer),
-        o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, this.colorTexture, 0),
-        o.framebufferRenderbuffer(o.FRAMEBUFFER, o.DEPTH_STENCIL_ATTACHMENT, o.RENDERBUFFER, this.depthRenderbuffer),
-        o.clearStencil(0),
-        o.clear(o.COLOR_BUFFER_BIT | o.DEPTH_BUFFER_BIT | o.STENCIL_BUFFER_BIT);
-        var a = new Float32Array(16);
-        o.bindFramebuffer(o.FRAMEBUFFER, this.framebuffer),
-        o.viewport(0, 0, this.canvas.width, this.canvas.height),
-        o.enable(o.STENCIL_TEST),
-        o.stencilOp(o.REPLACE, o.REPLACE, o.REPLACE),
-        o.useProgram(this.openingProgram.program),
-        o.colorMask(!1, !1, !1, !1),
-        o.enableVertexAttribArray(0);
-        for (var s = t.length - 1; 0 <= s; --s) {
-            var u = t[s].opening
-              , l = S.premultiply(a, t[s].modelMatrix, this.projectionViewMatrix);
-            o.bindBuffer(o.ARRAY_BUFFER, u.positionsBuffer),
-            o.vertexAttribPointer(0, 2, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, u.indexBuffer),
-            o.uniformMatrix4fv(this.openingProgram.uniformLocations.u_projectionViewModelMatrix, !1, l),
-            o.stencilFunc(o.ALWAYS, 1 << t.length - 1 - s, 1 << t.length - 1 - s),
-            o.drawElements(o.TRIANGLES, u.indicesCount, o.UNSIGNED_SHORT, 0)
-        }
-        o.colorMask(!0, !0, !0, !0),
-        o.disable(o.STENCIL_TEST),
-        o.disableVertexAttribArray(0),
-        o.enable(o.DEPTH_TEST),
-        o.enable(o.CULL_FACE);
-        var h = [this.mouthProgram, this.wrinkleProgram, this.insideProgram, this.toothProgram, this.tongueProgram];
-        for (s = 0; s < h.length; ++s)
-            o.useProgram(h[s].program),
-            this.setLightingUniforms(h[s], 0);
-        for (s = 0; s < t.length; ++s) {
-            var c = t[s];
-            o.clearColor(1, 1, 1, 1);
-            for (var f = 0; f < this.lights.length; ++f) {
-                var m = this.lights[f];
-                o.bindFramebuffer(o.FRAMEBUFFER, this.shadowFramebuffer),
-                o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, m.depthColorTexture, 0),
-                o.framebufferRenderbuffer(o.FRAMEBUFFER, o.DEPTH_ATTACHMENT, o.RENDERBUFFER, m.depthRenderbuffer),
-                o.clear(o.COLOR_BUFFER_BIT | o.DEPTH_BUFFER_BIT);
-                l = S.premultiply(a, t[s].modelMatrix, m.projectionViewMatrix);
-                c.usesWrinkleMesh ? (o.useProgram(this.wrinkleDepthProgram.program),
-                o.viewport(0, 0, m.shadowMapWidth, m.shadowMapWidth),
-                o.activeTexture(o.TEXTURE2),
-                o.bindTexture(o.TEXTURE_2D, c.wrinkleMesh.wrinklePositionsTexture),
-                o.uniform1i(this.wrinkleDepthProgram.uniformLocations.u_positionsTexture, 2),
-                o.uniformMatrix4fv(this.wrinkleDepthProgram.uniformLocations.u_projectionViewModelMatrix, !1, l),
-                o.enableVertexAttribArray(0),
-                o.bindBuffer(o.ARRAY_BUFFER, c.wrinkleMesh.vertexBuffer),
-                o.vertexAttribPointer(0, 2, o.FLOAT, o.FALSE, 0, 0),
-                o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, c.wrinkleMesh.indexBuffer),
-                o.drawElements(o.TRIANGLES, c.wrinkleMesh.wrinkleIndexCount, o.UNSIGNED_SHORT, 0)) : (o.useProgram(this.mouthDepthProgram.program),
-                o.uniformMatrix4fv(this.mouthDepthProgram.uniformLocations.u_projectionViewModelMatrix, !1, l),
-                o.uniform1f(this.mouthDepthProgram.uniformLocations.u_near, m.near),
-                o.uniform1f(this.mouthDepthProgram.uniformLocations.u_far, m.far),
-                o.viewport(0, 0, m.shadowMapWidth, m.shadowMapWidth),
-                o.enableVertexAttribArray(0),
-                o.bindBuffer(o.ARRAY_BUFFER, c.embeddedMesh.positionsBuffer),
-                o.vertexAttribPointer(0, 3, o.FLOAT, !1, 0, 0),
-                o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, c.embeddedMesh.indexBuffer),
-                o.drawElements(o.TRIANGLES, c.embeddedMesh.indicesCount, o.UNSIGNED_SHORT, 0)),
-                o.disableVertexAttribArray(0)
-            }
-            o.clearColor(0, 0, 0, 0),
-            o.bindFramebuffer(o.FRAMEBUFFER, this.framebuffer),
-            o.viewport(0, 0, this.canvas.width, this.canvas.height),
-            o.enable(o.STENCIL_TEST),
-            o.stencilOp(o.KEEP, o.KEEP, o.KEEP),
-            o.stencilFunc(o.EQUAL, 1 << t.length - 1 - s, 4294967295),
-            o.useProgram(this.insideProgram.program),
-            o.uniformMatrix4fv(this.insideProgram.uniformLocations.u_modelMatrix, !1, c.modelMatrix),
-            o.enableVertexAttribArray(0),
-            o.enableVertexAttribArray(1),
-            o.bindBuffer(o.ARRAY_BUFFER, c.insideMesh.positionsBuffer),
-            o.vertexAttribPointer(0, 3, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ARRAY_BUFFER, c.insideMesh.normalsBuffer),
-            o.vertexAttribPointer(1, 3, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, c.insideMesh.indexBuffer),
-            o.drawElements(o.TRIANGLES, c.insideMesh.indicesCount, o.UNSIGNED_SHORT, 0),
-            o.stencilFunc(o.GEQUAL, 1 << t.length - 1 - s, 4294967295);
-            var d = c.usesWrinkleMesh ? this.wrinkleProgram : this.mouthProgram;
-            o.useProgram(d.program),
-            o.uniformMatrix4fv(d.uniformLocations.u_modelMatrix, !1, c.modelMatrix),
-            0 === s ? (o.uniform3f(d.uniformLocations.u_albedo, Math.pow(1, N), Math.pow(50 / 255, N), Math.pow(50 / 255, N)),
-            o.uniform1f(d.uniformLocations.u_roughness, .2)) : (o.uniform3f(d.uniformLocations.u_albedo, Math.pow(1, N), Math.pow(220 / 255, N), Math.pow(200 / 255, N)),
-            o.uniform1f(d.uniformLocations.u_roughness, .3)),
-            c.usesWrinkleMesh ? (o.enableVertexAttribArray(0),
-            o.bindBuffer(o.ARRAY_BUFFER, c.wrinkleMesh.vertexBuffer),
-            o.vertexAttribPointer(0, 2, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, c.wrinkleMesh.indexBuffer),
-            o.activeTexture(o.TEXTURE2),
-            o.bindTexture(o.TEXTURE_2D, c.wrinkleMesh.wrinklePositionsTexture),
-            o.uniform1i(d.uniformLocations.u_positionsTexture, 2),
-            o.activeTexture(o.TEXTURE3),
-            o.bindTexture(o.TEXTURE_2D, c.wrinkleMesh.wrinkleNormalsTexture),
-            o.uniform1i(d.uniformLocations.u_normalsTexture, 3),
-            o.drawElements(o.TRIANGLES, c.wrinkleMesh.wrinkleIndexCount, o.UNSIGNED_SHORT, 0),
-            o.disableVertexAttribArray(0)) : (o.enableVertexAttribArray(0),
-            o.enableVertexAttribArray(1),
-            o.bindBuffer(o.ARRAY_BUFFER, c.embeddedMesh.positionsBuffer),
-            o.vertexAttribPointer(0, 3, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ARRAY_BUFFER, c.embeddedMesh.normalsBuffer),
-            o.vertexAttribPointer(1, 3, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, c.embeddedMesh.indexBuffer),
-            o.drawElements(o.TRIANGLES, c.embeddedMesh.indicesCount, o.UNSIGNED_SHORT, 0),
-            o.disableVertexAttribArray(0),
-            o.disableVertexAttribArray(1)),
-            o.stencilFunc(o.EQUAL, 1 << t.length - 1 - s, 4294967295),
-            o.useProgram(this.tongueProgram.program),
-            o.uniform3f(this.tongueProgram.uniformLocations.u_albedo, Math.pow(1, N), Math.pow(100 / 255, N), Math.pow(100 / 255, N)),
-            o.enableVertexAttribArray(0),
-            o.enableVertexAttribArray(1),
-            o.bindBuffer(o.ARRAY_BUFFER, c.tongue.positionsBuffer),
-            o.vertexAttribPointer(0, 3, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ARRAY_BUFFER, c.tongue.normalsBuffer),
-            o.vertexAttribPointer(1, 3, o.FLOAT, o.FALSE, 0, 0),
-            o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, c.tongue.indexBuffer),
-            o.uniformMatrix4fv(this.tongueProgram.uniformLocations.u_modelMatrix, !1, c.modelMatrix),
-            o.drawElements(o.TRIANGLES, c.tongue.indicesCount, o.UNSIGNED_SHORT, 0),
-            o.disableVertexAttribArray(0),
-            o.disableVertexAttribArray(1),
-            o.depthMask(!1),
-            o.useProgram(this.toothProgram.program);
-            for (f = 0; f < c.teeth.length; ++f) {
-                var p = c.teeth[f]
-                  , g = S.premultiply(a, p.modelMatrix, c.modelMatrix);
-                o.enableVertexAttribArray(0),
-                o.enableVertexAttribArray(1),
-                o.bindBuffer(o.ARRAY_BUFFER, p.positionsBuffer),
-                o.vertexAttribPointer(0, 3, o.FLOAT, o.FALSE, 0, 0),
-                o.bindBuffer(o.ARRAY_BUFFER, p.normalsBuffer),
-                o.vertexAttribPointer(1, 3, o.FLOAT, o.FALSE, 0, 0),
-                o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, p.indexBuffer),
-                o.uniformMatrix4fv(this.toothProgram.uniformLocations.u_modelMatrix, !1, g),
-                o.drawElements(o.TRIANGLES, p.indicesCount, o.UNSIGNED_SHORT, 0),
-                o.disableVertexAttribArray(0),
-                o.disableVertexAttribArray(1)
-            }
-            o.depthMask(!0),
-            o.disable(o.STENCIL_TEST)
-        }
-        o.disable(o.STENCIL_TEST),
-        o.disable(o.DEPTH_TEST),
-        o.disable(o.CULL_FACE),
-        o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, this.colorTextureTemp, 0),
-        o.framebufferRenderbuffer(o.FRAMEBUFFER, o.DEPTH_STENCIL_ATTACHMENT, o.RENDERBUFFER, null),
-        o.clear(o.COLOR_BUFFER_BIT),
-        o.viewport(0, 0, this.canvas.width, this.canvas.height),
-        o.enableVertexAttribArray(0),
-        o.bindBuffer(o.ARRAY_BUFFER, this.triangleVertexBuffer),
-        o.vertexAttribPointer(0, 2, o.FLOAT, !1, 0, 0),
-        o.useProgram(this.sssBlurProgram.program),
-        o.uniform1i(this.sssBlurProgram.uniformLocations.u_colorTexture, 0),
-        o.uniform2f(this.sssBlurProgram.uniformLocations.u_resolution, this.canvas.width, this.canvas.height),
-        o.uniformMatrix4fv(this.sssBlurProgram.uniformLocations.u_projectionMatrix, !1, this.projectionMatrix),
-        o.uniform1f(this.sssBlurProgram.uniformLocations.u_near, .05),
-        o.uniform1f(this.sssBlurProgram.uniformLocations.u_far, 100),
-        o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, this.colorTextureTemp, 0),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, this.colorTexture),
-        o.uniform2f(this.sssBlurProgram.uniformLocations.u_direction, 1, 0),
-        o.drawArrays(o.TRIANGLES, 0, 3),
-        o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, this.colorTexture, 0),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, this.colorTextureTemp),
-        o.uniform2f(this.sssBlurProgram.uniformLocations.u_direction, 0, 1),
-        o.drawArrays(o.TRIANGLES, 0, 3),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, null),
-        o.activeTexture(o.TEXTURE1),
-        o.bindTexture(o.TEXTURE_2D, null),
-        o.framebufferRenderbuffer(o.FRAMEBUFFER, o.DEPTH_STENCIL_ATTACHMENT, o.RENDERBUFFER, this.depthRenderbuffer),
-        o.enable(o.DEPTH_TEST),
-        o.enable(o.CULL_FACE),
-        o.useProgram(this.eyeProgram.program),
-        this.setLightingUniforms(this.eyeProgram, 0),
-        o.enableVertexAttribArray(0),
-        o.enableVertexAttribArray(1);
-        for (s = 0; s < t.length; ++s) {
-            var _ = [(c = t[s]).leftEye, c.rightEye];
-            for (f = 0; f < _.length; ++f) {
-                var T = _[f];
-                g = S.premultiply(a, T.modelMatrix, c.modelMatrix);
-                o.uniformMatrix4fv(this.eyeProgram.uniformLocations.u_modelMatrix, !1, g),
-                o.uniformMatrix4fv(this.eyeProgram.uniformLocations.u_normalMatrix, !1, T.normalMatrix),
-                o.bindBuffer(o.ARRAY_BUFFER, T.positionsBuffer),
-                o.vertexAttribPointer(0, 3, o.FLOAT, o.FALSE, 0, 0),
-                o.bindBuffer(o.ARRAY_BUFFER, T.normalsBuffer),
-                o.vertexAttribPointer(1, 3, o.FLOAT, o.FALSE, 0, 0),
-                o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, T.indexBuffer),
-                o.drawElements(o.TRIANGLES, T.indicesCount, o.UNSIGNED_SHORT, 0)
-            }
-        }
-        o.disableVertexAttribArray(0),
-        o.disableVertexAttribArray(1),
-        o.disable(o.DEPTH_TEST),
-        o.disable(o.CULL_FACE),
-        o.enableVertexAttribArray(0),
-        o.bindBuffer(o.ARRAY_BUFFER, this.triangleVertexBuffer),
-        o.vertexAttribPointer(0, 2, o.FLOAT, !1, 0, 0),
-        o.viewport(0, 0, this.canvas.width, this.canvas.height),
-        o.enable(o.DEPTH_TEST),
-        o.depthMask(!1),
-        o.useProgram(this.backgroundProgram.program),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, r.texture),
-        o.uniform1i(this.backgroundProgram.uniformLocations.u_texture, 0),
-        o.uniform1f(this.backgroundProgram.uniformLocations.u_boost, r.boost.evaluate());
-        var E = 2 * Math.atan(1 / this.projectionMatrix[5]);
-        o.uniform2f(this.backgroundProgram.uniformLocations.u_scale, Math.tan(E / 2) * this.canvas.width / this.canvas.height, Math.tan(E / 2)),
-        o.drawArrays(o.TRIANGLES, 0, 3),
-        o.disable(o.DEPTH_TEST),
-        o.depthMask(!0),
-        o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, this.colorTextureTemp, 0),
-        o.bindFramebuffer(o.FRAMEBUFFER, this.framebuffer),
-        o.viewport(0, 0, this.canvas.width, this.canvas.height),
-        o.useProgram(this.fxaaProgram.program),
-        o.enableVertexAttribArray(0),
-        o.bindBuffer(o.ARRAY_BUFFER, this.triangleVertexBuffer),
-        o.vertexAttribPointer(0, 2, o.FLOAT, !1, 0, 0),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, this.colorTexture),
-        o.uniform1i(this.fxaaProgram.uniformLocations.u_input, 0),
-        o.uniform1f(this.fxaaProgram.uniformLocations.u_gamma, N),
-        o.uniform2f(this.fxaaProgram.uniformLocations.u_resolution, this.canvas.width, this.canvas.height),
-        o.drawArrays(o.TRIANGLES, 0, 3),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, null),
-        0 < e.spriteRenderer.indicesCount && (o.enable(o.DEPTH_TEST),
-        o.depthMask(!1),
-        o.enable(o.BLEND),
-        o.blendFunc(o.ONE, o.ONE_MINUS_SRC_ALPHA),
-        o.enableVertexAttribArray(0),
-        o.enableVertexAttribArray(1),
-        o.enableVertexAttribArray(2),
-        o.useProgram(this.spriteProgram.program),
-        o.bindBuffer(o.ARRAY_BUFFER, e.spriteRenderer.positionsBuffer),
-        o.vertexAttribPointer(0, 2, o.FLOAT, !1, 0, 0),
-        o.bindBuffer(o.ARRAY_BUFFER, e.spriteRenderer.uvsBuffer),
-        o.vertexAttribPointer(1, 2, o.FLOAT, !1, 0, 0),
-        o.bindBuffer(o.ARRAY_BUFFER, e.spriteRenderer.colorsBuffer),
-        o.vertexAttribPointer(2, 4, o.FLOAT, !1, 0, 0),
-        o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, e.spriteRenderer.indexBuffer),
-        o.uniform2f(this.spriteProgram.uniformLocations.u_resolution, this.canvas.width, this.canvas.height),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, e.spriteRenderer.spritesImage.texture),
-        o.uniform1i(this.spriteProgram.uniformLocations.u_image, 0),
-        o.drawElements(o.TRIANGLES, e.spriteRenderer.indicesCount, o.UNSIGNED_SHORT, 0),
-        o.disable(o.DEPTH_TEST),
-        o.depthMask(!0),
-        o.disable(o.BLEND),
-        o.disableVertexAttribArray(0),
-        o.disableVertexAttribArray(1),
-        o.disableVertexAttribArray(2)),
-        0 < e.lines.vertexCount && (o.enableVertexAttribArray(0),
-        o.enableVertexAttribArray(1),
-        o.enable(o.DEPTH_TEST),
-        o.depthMask(!1),
-        o.enable(o.BLEND),
-        o.blendFunc(o.SRC_ALPHA, o.ONE_MINUS_SRC_ALPHA),
-        o.useProgram(this.lineProgram.program),
-        o.bindBuffer(o.ARRAY_BUFFER, e.lines.positionsBuffer),
-        o.vertexAttribPointer(0, 2, o.FLOAT, !1, 0, 0),
-        o.bindBuffer(o.ARRAY_BUFFER, e.lines.colorsBuffer),
-        o.vertexAttribPointer(1, 4, o.FLOAT, !1, 0, 0),
-        o.uniform2f(this.lineProgram.uniformLocations.u_resolution, this.canvas.width, this.canvas.height),
-        o.uniform1f(this.lineProgram.uniformLocations.u_alpha, 1),
-        o.drawArrays(o.LINES, 0, e.lines.vertexCount),
-        o.disable(o.DEPTH_TEST),
-        o.depthMask(!0),
-        o.disable(o.BLEND),
-        o.disableVertexAttribArray(0),
-        o.disableVertexAttribArray(1)),
-        o.framebufferTexture2D(o.FRAMEBUFFER, o.COLOR_ATTACHMENT0, o.TEXTURE_2D, this.colorTexture, 0),
-        o.framebufferRenderbuffer(o.FRAMEBUFFER, o.DEPTH_STENCIL_ATTACHMENT, o.RENDERBUFFER, this.depthRenderbuffer),
-        o.clear(o.COLOR_BUFFER_BIT),
-        0 < n.getSpitCount() && (o.enable(o.DEPTH_TEST),
-        o.depthMask(!1),
-        o.useProgram(this.spitProgram.program),
-        o.enableVertexAttribArray(0),
-        o.enableVertexAttribArray(1),
-        o.enableVertexAttribArray(2),
-        o.bindBuffer(o.ARRAY_BUFFER, n.positionsVelocitiesBuffer),
-        o.vertexAttribPointer(0, 3, o.FLOAT, !1, 24, 0),
-        o.bindBuffer(o.ARRAY_BUFFER, n.positionsVelocitiesBuffer),
-        o.vertexAttribPointer(1, 3, o.FLOAT, !1, 24, 12),
-        o.bindBuffer(o.ARRAY_BUFFER, n.offsetsBuffer),
-        o.vertexAttribPointer(2, 2, o.FLOAT, !1, 0, 0),
-        o.bindBuffer(o.ELEMENT_ARRAY_BUFFER, n.indexBuffer),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, this.colorTextureTemp),
-        o.uniform1i(this.spitProgram.uniformLocations.u_image, 0),
-        o.uniform2f(this.spitProgram.uniformLocations.u_resolution, this.canvas.width, this.canvas.height),
-        o.uniformMatrix4fv(this.spitProgram.uniformLocations.u_projectionViewMatrix, !1, this.projectionViewMatrix),
-        o.uniform3fv(this.spitProgram.uniformLocations.u_cameraPosition, this.cameraPosition),
-        o.drawElements(o.TRIANGLES, 6 * n.getSpitCount(), o.UNSIGNED_SHORT, 0),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, null),
-        o.disable(o.DEPTH_TEST),
-        o.depthMask(!0),
-        o.disableVertexAttribArray(0),
-        o.disableVertexAttribArray(1),
-        o.disableVertexAttribArray(2)),
-        0 < n.getDropletCount() && (o.enableVertexAttribArray(0),
-        o.useProgram(this.dropletProgram.program),
-        o.bindBuffer(o.ARRAY_BUFFER, n.dropletPositionsBuffer),
-        o.vertexAttribPointer(0, 3, o.FLOAT, !1, 0, 0),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, this.colorTextureTemp),
-        o.uniform1i(this.dropletProgram.uniformLocations.u_image, 0),
-        o.uniform2f(this.dropletProgram.uniformLocations.u_resolution, this.canvas.width, this.canvas.height),
-        o.uniform1f(this.dropletProgram.uniformLocations.u_effectiveHeight, this.getEffectiveHeight()),
-        o.uniformMatrix4fv(this.dropletProgram.uniformLocations.u_projectionViewMatrix, !1, this.projectionViewMatrix),
-        o.uniform3fv(this.dropletProgram.uniformLocations.u_cameraPosition, this.cameraPosition),
-        o.drawArrays(o.POINTS, 0, n.getDropletCount()),
-        o.disableVertexAttribArray(0),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, null)),
-        o.bindFramebuffer(o.FRAMEBUFFER, null),
-        o.viewport(0, 0, this.canvas.width, this.canvas.height),
-        o.enableVertexAttribArray(0),
-        o.bindBuffer(o.ARRAY_BUFFER, this.triangleVertexBuffer),
-        o.vertexAttribPointer(0, 2, o.FLOAT, !1, 0, 0),
-        o.useProgram(this.compositeProgram.program),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, this.colorTextureTemp),
-        o.uniform1i(this.compositeProgram.uniformLocations.u_colorTexture, 0),
-        o.activeTexture(o.TEXTURE1),
-        o.bindTexture(o.TEXTURE_2D, this.colorTexture),
-        o.uniform1i(this.compositeProgram.uniformLocations.u_colorTexture2, 1),
-        o.uniform4f(this.compositeProgram.uniformLocations.u_fadeFromColor, 71 / 255, 84 / 255, .4, 1),
-        o.uniform1f(this.compositeProgram.uniformLocations.u_fadeFraction, i),
-        o.drawArrays(o.TRIANGLES, 0, 3),
-        o.activeTexture(o.TEXTURE0),
-        o.bindTexture(o.TEXTURE_2D, null),
-        o.activeTexture(o.TEXTURE1),
-        o.bindTexture(o.TEXTURE_2D, null),
-        o.disableVertexAttribArray(0)
-    }
-    ,
-    U.prototype.onResize = function() {
-        var t = this.wgl;
-        t.rebuildTexture(this.colorTexture, t.RGBA, t.UNSIGNED_BYTE, this.canvas.width, this.canvas.height, null, t.CLAMP_TO_EDGE, t.CLAMP_TO_EDGE, t.LINEAR, t.LINEAR),
-        t.rebuildTexture(this.colorTextureTemp, t.RGBA, t.UNSIGNED_BYTE, this.canvas.width, this.canvas.height, null, t.CLAMP_TO_EDGE, t.CLAMP_TO_EDGE, t.LINEAR, t.LINEAR),
-        t.renderbufferStorage(this.depthRenderbuffer, t.RENDERBUFFER, t.DEPTH_STENCIL, this.canvas.width, this.canvas.height)
-    }
-    ,
-    V.prototype.change = function(t, e, r, n) {
-        if (this.endValue !== t) {
-            var i = this.evaluate();
-            1 <= this.computeT() ? this.startGradient = r * (t - i) / e : this.startGradient = this.evaluateGradient(),
-            this.endGradient = n * (t - i) / e,
-            this.startValue = i,
-            this.endValue = t,
-            this.changeTime = Date.now() / 1e3,
-            this.duration = e
-        }
-    }
-    ,
+    function Y(t, e, r, n, i, o, a, s, u, l) {}
     V.prototype.computeT = function() {
         var t = Date.now() / 1e3;
         return g.linearstep(this.changeTime, this.changeTime + this.duration, t)
@@ -5108,14 +4177,14 @@
         ];
 
         this.harmonyMouthControllers = [
-            new q(r[1],60,72,delays[0], 0  , 5  , .8 , .2 ),
-            new q(r[2],50,66,delays[1],  .2, 2.5, .65, .15),
-            new q(r[3],43,58,delays[2],  .4, 1  , .5 , .1 )
+            new q(function(){},60,72,delays[0], 0  , 5  , .8 , .2 ),
+            new q(function(){},50,66,delays[1],  .2, 2.5, .65, .15),
+            new q(function(){},43,58,delays[2],  .4, 1  , .5 , .1 )
         ];
 
         var dontPlayFirstChord = true;
         this.neuralNet.addOnNotesCallback(function(t) {
-            if (this.isSinging && this.melodyMouth.getIsDragging()) {
+            if (this.isSinging) {
                 for (var e = [], r = 0; r < 3; ++r) {
                     var n = t[r][0];
                     e.push(n)
@@ -5149,7 +4218,7 @@
         this.timeCurrentNoteReached = Date.now();
         this.generatedHarmonisationForCurrentNote = false;
         this.harmonisedThisPull = false;
-        this.melodyMouth = this.mouths[0];
+        // this.melodyMouth = this.mouths[0];
         this.melodyVoice = new K(Z[0]);
         this.harmonyNotes = null;
         this.frame = 0;
@@ -5163,42 +4232,7 @@
         for (var t = 0; t < 1024; ++t)
             this.gradients.push(16 * Math.random() - 8)
     }
-    function tt(t, e, r, n) {
-        this.module = t,
-        this.wgl = e,
-        this.mouths = r,
-        this.audio = n,
-        this.maxParticleCount = t.ccall("getMaxSpitCount", null, [], []),
-        this.particleCount = t.ccall("getSpitCount", null, [], []);
-        for (var i = [], o = this.indices = [], a = 0; a < this.maxParticleCount; ++a)
-            i.push(-1),
-            i.push(-1),
-            i.push(1),
-            i.push(-1),
-            i.push(1),
-            i.push(1),
-            i.push(-1),
-            i.push(1),
-            o.push(4 * a + 0),
-            o.push(4 * a + 1),
-            o.push(4 * a + 2),
-            o.push(4 * a + 2),
-            o.push(4 * a + 3),
-            o.push(4 * a + 0);
-        this.offsetsBuffer = e.buildBuffer(e.ARRAY_BUFFER, new Float32Array(i), e.STATIC_DRAW),
-        this.indexBuffer = e.buildBuffer(e.ELEMENT_ARRAY_BUFFER, new Uint16Array(o), e.STATIC_DRAW),
-        this.positionsVelocitiesBuffer = e.createBuffer(),
-        this.dropletPositionsBuffer = e.createBuffer(),
-        this.getRenderingData = t.cwrap("getSpitRenderingData", "number", []),
-        this.getSpitCount = t.cwrap("getSpitCount", "number", []),
-        this.getDropletCount = t.cwrap("getDropletCount", "number", []),
-        this.getDropletPositionData = t.cwrap("getDropletPositionData", "number", []),
-        this.getProjectionViewMatrix = t.cwrap("getSpitProjectionViewMatrix", "number", []),
-        this.noises = [];
-        for (a = 0; a < r.length; ++a)
-            this.noises.push(new $);
-        this.frame = 0
-    }
+
     function et(t, e, r, n) {
         this.simplified = t,
         this.onProgress = r,
@@ -5210,7 +4244,7 @@
             })
         }
         , function(t) {
-            this.audio = new x(o,e),
+            this.audio = function(){},
             t()
         }
         , function(t) {
@@ -5218,50 +4252,18 @@
             t()
         }
         , function(t) {
-            var e = this.canvas = document.createElement("canvas");
-            e.width = window.innerWidth,
-            e.height = window.innerHeight;
-            var r = this.wgl = c.create(e, {
-                antialias: !1
-            });
-            r.getExtension("OES_texture_float");
-            this.renderer = new U(e,r);
             t()
         }
         , function(t) {
             this.ui = new f(this.wgl,t)
         }
         , function(t) {
-            this.mouths = [],
-            this.simplified ? this.mouths.push(new Y(i,this.wgl,0,29,70,!1,0,0,0,1)) : this.mouths.push(new Y(i,this.wgl,0,89,160,!0,0,0,0,1)),
-            t()
-        }
-        , function(t) {
-            this.mouths.push(new Y(i,this.wgl,1,29,70,!1,-.4,0,-.2,.95)),
-            t()
-        }
-        , function(t) {
-            this.mouths.push(new Y(i,this.wgl,1,29,70,!1,.4,0,-.2,.95)),
-            t()
-        }
-        , function(t) {
-            this.mouths.push(new Y(i,this.wgl,1,29,70,!1,-.8,0,-.4,.95)),
-            t()
-        }
-        , function(t) {
-            this.background = new k(this.wgl),
-            t()
-        }
-        , function(t) {
             this.conductor = new Q(
                 this.audio,
                 this.neuralNet,
                 this.mouths,
-                this.audio.getProcessingSampleRate() < 3e4 ? 2 : 4),
-            t()
-        }
-        , function(t) {
-            this.spit = new tt(i,this.wgl,this.mouths,this.audio),
+                4
+            ),
             t()
         }
         , function(t) {
@@ -5272,7 +4274,7 @@
             t()
         }
         ];
-        this.neuralNet = new A(function() {
+        this.neuralNet = new HarmonizeNeuralNetwork(function() {
             a = !0,
             s && window.setTimeout(function() {
                 r(1),
@@ -5296,12 +4298,6 @@
         return navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)
     }
     Q.prototype.update = function(t) {
-        this.frame += 1;
-        var e = function o(t, e, r, n) {
-            var i = t.indexOf(r);
-            return -1 !== i && e > (i - n) / t.length && e < (i + 1 + n) / t.length ? r : t[g.clamp(Math.floor(e * t.length), 0, t.length - 1)]
-        }(Z, .5 * Math.abs(this.melodyMouth.getMinY()), this.currentNote, .1);
-
         e = window.CHORDS.activeMelodyNote; // TODO
 
         if (e !== this.currentNote) {
@@ -5310,12 +4306,7 @@
             this.generatedHarmonisationForCurrentNote = false;
         }
 
-        if (this.isSinging) {
-            if (this.melodyMouth.getArea() < .01) {
-                this.isSinging = false;
-                this.harmonisedThisPull = false;
-            }
-        } else {
+        if (!this.isSinging) {
             if (this.melodyMouth.getClosedUnclosedRatio() === 1 && this.melodyMouth.getIsDragging()) {
                 this.isSinging = true;
                 this.harmonisedThisPull = false;
@@ -5327,7 +4318,7 @@
         this.isSinging = true; // TODO
 
         if (this.isSinging) {
-            if (this.getSecondsOnCurrentNote() >= this.getTimeToHarmonise() && !this.generatedHarmonisationForCurrentNote && this.melodyMouth.getIsDragging()) {
+            if (this.getSecondsOnCurrentNote() >= this.getTimeToHarmonise() && !this.generatedHarmonisationForCurrentNote) {
                 this.generatedHarmonisationForCurrentNote = true;
                 this.harmonisedThisPull = true;
                 this.neuralNet.harmonize(this.currentNote);
@@ -5336,33 +4327,7 @@
             }
         }
 
-        for (var r = 0; r < 3; ++r) {
-            this.harmonyMouthControllers[r].update(
-                t,
-                null === this.harmonyNotes ?
-                    null :
-                    this.harmonyNotes[r]
-                ,
-                this.audio.getVibratoFrequency(1 + r),
-                this.audio.getVibratoAmplitude(1 + r),
-                true || this.melodyMouth.getIsDragging(),
-                this.melodyMouth.getDragX()
-            );
-        }
         var n = [this.melodyVoice, this.harmonyMouthControllers[0].voice, this.harmonyMouthControllers[1].voice, this.harmonyMouthControllers[2].voice];
-        // TODO
-        // console.log(n[0].midiNote.targetValue, n[1].midiNote.targetValue, n[2].midiNote.targetValue, n[3].midiNote.targetValue);
-        for (r = 0; r < 4; ++r)
-            this.audio.setParameter(r, "open_ratio", this.mouths[r].getClosedUnclosedRatio()),
-            this.audio.setParameter(r, "area", this.mouths[r].getArea()),
-            this.audio.setParameter(r, "note", n[r].midiNote.evaluate() + this.transpose),
-            this.audio.setParameter(r, "average_distance", this.mouths[r].getAverageDistance()),
-            this.audio.setParameter(r, "distance_centroid", this.mouths[r].getDistanceCentroid()),
-            this.audio.setParameter(r, "max_stretch", this.mouths[r].getMaxStretch()),
-            this.audio.setParameter(r, "max_stretch_position", this.mouths[r].getMaxStretchPosition()),
-            this.audio.setParameter(r, "pan", this.mouths[r].getPan());
-        for (r = 0; r < this.mouths.length; ++r)
-            this.mouths[r].oscillationScale = 20 * this.audio.getRMS(r, 0)
     }
     ,
     Q.prototype.getTimeToHarmonise = function() {
@@ -5397,47 +4362,7 @@
         }(n))
     }
     ,
-    tt.prototype.update = function(t, e) {
-        for (var r = this.wgl, n = 0; n < this.mouths.length; ++n) {
-            var i = (.6 + .4 * this.noises[n].evaluate(this.frame / 200)) * this.audio.getRMS(n) * 12;
-            this.module._spawnSpitFromMouth(n, i, this.mouths[n].position[0], this.mouths[n].position[1], this.mouths[n].position[2], this.mouths[n].scale)
-        }
-        this.module._stepSpit(e);
-        var o = this.module.HEAPF32.subarray(this.getProjectionViewMatrix() >> 2, 16 + (this.getProjectionViewMatrix() >> 2));
-        for (n = 0; n < 16; ++n)
-            o[n] = t[n];
-        if (0 < this.getSpitCount()) {
-            var a = this.module.HEAPF32.subarray(this.getRenderingData() >> 2, (this.getRenderingData() >> 2) + 3 * this.getSpitCount() * 4 * 2);
-            r.bufferData(this.positionsVelocitiesBuffer, r.ARRAY_BUFFER, a, r.DYNAMIC_DRAW)
-        }
-        if (0 < this.getDropletCount()) {
-            var s = this.module.HEAPF32.subarray(this.getDropletPositionData() >> 2, (this.getDropletPositionData() >> 2) + 3 * this.getDropletCount());
-            r.bufferData(this.dropletPositionsBuffer, r.ARRAY_BUFFER, s, r.DYNAMIC_DRAW)
-        }
-        this.frame += 1
-    }
-    ,
-    et.prototype.tryStartAudio = function() {
-        this.audio.tryStart()
-    }
-    ,
     et.prototype.start = function() {
-        this.canvas.addEventListener("mousedown", function(t) {
-            0 === t.button && this.onMouseDown(t)
-        }
-        .bind(this)),
-        this.canvas.addEventListener("click", function(t) {
-            this.tryStartAudio()
-        }
-        .bind(this)),
-        // TODO - use our own handler here
-        document.addEventListener("mouseup", this.onMouseUp.bind(this)),
-        document.addEventListener("mousemove", this.onMouseMove.bind(this)),
-        this.canvas.addEventListener("touchstart", this.onTouchStart.bind(this)),
-        this.canvas.addEventListener("touchmove", this.onTouchMove.bind(this)),
-        this.canvas.addEventListener("touchend", this.onTouchEnd.bind(this)),
-        this.canvas.addEventListener("touchcancel", this.onTouchCancel.bind(this));
-
         // TODO
         var CHORDS = {};
         window.CHORDS = CHORDS;
@@ -5456,6 +4381,7 @@
         notes.addEventListener('mousedown', (event) => {
             var midiNote = parseInt(event.target.getAttribute('data-midi-number'), 10);
             CHORDS.activeMelodyNote = midiNote;
+            CHORDS.synths[0].triggerAttackRelease(Tone.Frequency(notes[i] + this.transpose, 'midi').toNote(), '16n');
         });
 
         // TODO
@@ -5479,73 +4405,8 @@
         (n = n.bind(this))()
     }
     ,
-    et.prototype.onMouseDown = function(t) {
-        var e = h(t, this.canvas);
-        this.mouseX = e.x / this.canvas.width * 2 - 1,
-        this.mouseY = -(e.y / this.canvas.height * 2 - 1),
-        this.mouseDown = !0;
-        for (var r = this.renderer.cameraPosition, n = this.renderer.getRayDirection(this.mouseX, this.mouseY), i = 0; i < this.mouths.length; ++i)
-            this.mouths[i].stopDrag();
-        for (i = 0; i < 1; ++i) {
-            if (this.mouths[i].startDrag(r, n))
-                break
-        }
-        this.tryStartAudio()
-    }
-    ,
-    et.prototype.onMouseMove = function(t) {
-        var e = h(t, this.canvas);
-        this.mouseX = e.x / this.canvas.width * 2 - 1,
-        this.mouseY = -(e.y / this.canvas.height * 2 - 1)
-    }
-    ,
-    et.prototype.onMouseUp = function(t) {
-        this.tryStartAudio(),
-        this.mouseDown = !1;
-        for (var e = 0; e < this.mouths.length; ++e)
-            this.mouths[e].stopDrag()
-    }
-    ,
-    et.prototype.onTouchStart = function(t) {
-        t.preventDefault(),
-        1 === t.touches.length && this.onMouseDown(t.targetTouches[0])
-    }
-    ,
-    et.prototype.onTouchMove = function(t) {
-        t.preventDefault(),
-        this.onMouseMove(t.targetTouches[0])
-    }
-    ,
-    et.prototype.onTouchEnd = function(t) {
-        t.preventDefault(),
-        0 < t.touches.length || this.onMouseUp({})
-    }
-    ,
-    et.prototype.onTouchCancel = function(t) {
-        t.preventDefault(),
-        0 < t.touches.length || this.onMouseUp({})
-    }
-    ,
-    et.prototype.updateCursor = function() {
-        var t = this.renderer.cameraPosition
-          , e = this.renderer.getRayDirection(this.mouseX, this.mouseY);
-        this.mouths[0].getIsDragging() ? this.canvas.style.cursor = "grabbing" : this.mouths[0].wouldDrag(t, e) ? this.canvas.style.cursor = "grab" : this.canvas.style.cursor = "default"
-    }
-    ,
     et.prototype.update = function(t) {
-        this.renderer.update();
-        for (var e = this.renderer.cameraPosition, r = this.renderer.getRayDirection(this.mouseX, this.mouseY), n = 0; n < this.mouths.length; ++n)
-            this.mouths[n].step(e, r);
         this.conductor.update(t);
-        for (n = 0; n < this.mouths.length; ++n)
-            this.mouths[n].update();
-        this.ui.update(t, this.renderer, this.conductor),
-        this.updateCursor(),
-        this.spit.update(this.renderer.projectionViewMatrix, this.renderer.cameraPosition[2] - .1),
-        this.background.update(this.renderer, this.mouths, this.conductor);
-        var i = g.smoothstep(0, 30, this.frame);
-        this.renderer.render(this.mouths, this.ui, this.background, this.spit, i),
-        this.frame += 1
     }
     ;
     var nt = document.createElement("canvas")
@@ -5570,7 +4431,6 @@
             function e() {
                 document.getElementById("loading").className = "loading-hidden",
                 window.setTimeout(function() {
-                    document.body.appendChild(ut.canvas),
                     document.getElementById("loading").outerHTML = document.getElementById("main-template").innerHTML,
                     ut.start()
                 }, 200)
