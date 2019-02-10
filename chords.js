@@ -273,64 +273,64 @@
             }
         }
         ,
-        i.prototype.createProgramFromFiles = function(o, a, s, u, t) {
-            var l = this
-              , e = [];
-            Array.isArray(o) ? e = e.concat(o) : e.push(o),
-            Array.isArray(a) ? e = e.concat(a) : e.push(a),
-            i.loadTextFiles(e, function(t) {
-                var e = [];
-                if (Array.isArray(o))
-                    for (var r = 0; r < o.length; ++r)
-                        e.push(t[o[r]]);
-                else
-                    e.push(t[o]);
-                var n = [];
-                if (Array.isArray(a))
-                    for (r = 0; r < a.length; ++r)
-                        n.push(t[a[r]]);
-                else
-                    n.push(t[a]);
-                var i = l.createProgram(e.join("\n"), n.join("\n"), s);
-                u(i)
-            })
-        }
-        ,
-        i.prototype.createProgramsFromFiles = function(t, r, e) {
-            var n = function l(t) {
-                var e = 0;
-                for (var r in t)
-                    t.hasOwnProperty(r) && (e += 1);
-                return e
-            }(t)
-              , i = 0
-              , o = {};
-            for (var a in t)
-                if (t.hasOwnProperty(a)) {
-                    var s = t[a]
-                      , u = this;
-                    !function() {
-                        var e = a;
-                        u.createProgramFromFiles(s.vertexShader, s.fragmentShader, s.attributeLocations, function(t) {
-                            o[e] = t,
-                            ++i === n && r(o)
-                        })
-                    }()
-                }
-        }
-        ,
-        i.prototype.deleteBuffer = function(t) {
-            this.gl.deleteBuffer(t)
-        }
-        ,
-        i.prototype.deleteFramebuffer = function(t) {
-            this.gl.deleteFramebuffer(t)
-        }
-        ,
-        i.prototype.deleteTexture = function(t) {
-            this.gl.deleteTexture(t)
-        }
-        ,
+        // i.prototype.createProgramFromFiles = function(o, a, s, u, t) {
+        //     var l = this
+        //       , e = [];
+        //     Array.isArray(o) ? e = e.concat(o) : e.push(o),
+        //     Array.isArray(a) ? e = e.concat(a) : e.push(a),
+        //     i.loadTextFiles(e, function(t) {
+        //         var e = [];
+        //         if (Array.isArray(o))
+        //             for (var r = 0; r < o.length; ++r)
+        //                 e.push(t[o[r]]);
+        //         else
+        //             e.push(t[o]);
+        //         var n = [];
+        //         if (Array.isArray(a))
+        //             for (r = 0; r < a.length; ++r)
+        //                 n.push(t[a[r]]);
+        //         else
+        //             n.push(t[a]);
+        //         var i = l.createProgram(e.join("\n"), n.join("\n"), s);
+        //         u(i)
+        //     })
+        // }
+        // ,
+        // i.prototype.createProgramsFromFiles = function(t, r, e) {
+        //     var n = function l(t) {
+        //         var e = 0;
+        //         for (var r in t)
+        //             t.hasOwnProperty(r) && (e += 1);
+        //         return e
+        //     }(t)
+        //       , i = 0
+        //       , o = {};
+        //     for (var a in t)
+        //         if (t.hasOwnProperty(a)) {
+        //             var s = t[a]
+        //               , u = this;
+        //             !function() {
+        //                 var e = a;
+        //                 u.createProgramFromFiles(s.vertexShader, s.fragmentShader, s.attributeLocations, function(t) {
+        //                     o[e] = t,
+        //                     ++i === n && r(o)
+        //                 })
+        //             }()
+        //         }
+        // }
+        // ,
+        // i.prototype.deleteBuffer = function(t) {
+        //     this.gl.deleteBuffer(t)
+        // }
+        // ,
+        // i.prototype.deleteFramebuffer = function(t) {
+        //     this.gl.deleteFramebuffer(t)
+        // }
+        // ,
+        // i.prototype.deleteTexture = function(t) {
+        //     this.gl.deleteTexture(t)
+        // }
+        // ,
         n.prototype.getAttribLocation = function(t) {
             return this.attributeLocations[t]
         }
@@ -679,152 +679,152 @@
         function q(t) {
             return String.prototype.startsWith ? t.startsWith(j) : 0 === t.indexOf(j)
         }
-        !function st() {
-            var t = "mouthmodule.wast"
-              , s = "mouthmodule.wasm"
-              , e = "mouthmodule.temp.asm.js";
-            q(t) || (t = p(t)),
-            q(s) || (s = p(s)),
-            q(e) || (e = p(e));
-            var u = {
-                global: null,
-                env: null,
-                asm2wasm: _,
-                parent: f
-            }
-              , l = null;
-            function h() {
-                try {
-                    if (f.wasmBinary)
-                        return new Uint8Array(f.wasmBinary);
-                    if (f.readBinary)
-                        return f.readBinary(s);
-                    throw "both async and sync fetching of the wasm failed"
-                } catch (g) {
-                    ot(g)
-                }
-            }
-            function c(t, e, r) {
-                if ("object" != typeof WebAssembly)
-                    return g("no native wasm support detected"),
-                    !1;
-                if (!(f.wasmMemory instanceof WebAssembly.Memory))
-                    return g("no native wasm Memory in use"),
-                    !1;
-                function n(t, e) {
-                    (l = t.exports).memory && function n(t) {
-                        var e = f.buffer;
-                        t.byteLength < e.byteLength && g("the new buffer in mergeMemory is smaller than the previous one. in native wasm, we should grow memory here");
-                        var r = new Int8Array(e);
-                        new Int8Array(t).set(r),
-                        L(t),
-                        B()
-                    }(l.memory),
-                    f.asm = l,
-                    f.usingWasm = !0,
-                    function r(t) {
-                        if (W--,
-                        f.monitorRunDependencies && f.monitorRunDependencies(W),
-                        0 == W && (null !== Y && (clearInterval(Y),
-                        Y = null),
-                        z)) {
-                            var e = z;
-                            z = null,
-                            e()
-                        }
-                    }()
-                }
-                if (e.memory = f.wasmMemory,
-                u.global = {
-                    NaN: NaN,
-                    Infinity: Infinity
-                },
-                u["global.Math"] = Math,
-                u.env = e,
-                function a(t) {
-                    W++,
-                    f.monitorRunDependencies && f.monitorRunDependencies(W)
-                }(),
-                f.instantiateWasm)
-                    try {
-                        return f.instantiateWasm(u, n)
-                    } catch (at) {
-                        return g("Module.instantiateWasm callback failed with error: " + at),
-                        !1
-                    }
-                function i(t) {
-                    n(t.instance, t.module)
-                }
-                function o(t) {
-                    (function e() {
-                        return f.wasmBinary || !d && !m || "function" != typeof fetch ? new Promise(function(t, e) {
-                            t(h())
-                        }
-                        ) : fetch(s, {
-                            credentials: "same-origin"
-                        }).then(function(t) {
-                            if (!t.ok)
-                                throw "failed to load wasm binary file at '" + s + "'";
-                            return t.arrayBuffer()
-                        })["catch"](function() {
-                            return h()
-                        })
-                    }
-                    )().then(function(t) {
-                        return WebAssembly.instantiate(t, u)
-                    }).then(t)["catch"](function(t) {
-                        g("failed to asynchronously prepare wasm: " + t),
-                        ot(t)
-                    })
-                }
-                return f.wasmBinary || "function" != typeof WebAssembly.instantiateStreaming || q(s) || "function" != typeof fetch ? o(i) : WebAssembly.instantiateStreaming(fetch(s, {
-                    credentials: "same-origin"
-                }), u).then(i)["catch"](function(t) {
-                    g("wasm streaming compile failed: " + t),
-                    g("falling back to ArrayBuffer instantiation"),
-                    o(i)
-                }),
-                {}
-            }
-            f.asmPreload = f.asm,
-            f.reallocBuffer,
-            f.reallocBuffer = function(t) {
-                return function(t) {
-                    t = I(t, f.usingWasm ? 65536 : 16777216);
-                    var e = f.buffer.byteLength;
-                    if (f.usingWasm)
-                        try {
-                            return -1 !== f.wasmMemory.grow((t - e) / 65536) ? f.buffer = f.wasmMemory.buffer : null
-                        } catch (at) {
-                            return null
-                        }
-                }(t)
-            }
-            ,
-            f.asm = function(t, e, r) {
-                if (!(e = function a(t) {
-                    return t
-                }(e)).table) {
-                    var n = f.wasmTableSize;
-                    n === undefined && (n = 1024);
-                    var i = f.wasmMaxTableSize;
-                    "object" == typeof WebAssembly && "function" == typeof WebAssembly.Table ? i !== undefined ? e.table = new WebAssembly.Table({
-                        initial: n,
-                        maximum: i,
-                        element: "anyfunc"
-                    }) : e.table = new WebAssembly.Table({
-                        initial: n,
-                        element: "anyfunc"
-                    }) : e.table = new Array(n),
-                    f.wasmTable = e.table
-                }
-                var o;
-                return e.memoryBase || (e.memoryBase = f.STATIC_BASE),
-                e.tableBase || (e.tableBase = 0),
-                T(o = c(0, e), "no binaryen method succeeded."),
-                o
-            }
-        }(),
+        // !function st() {
+        //     var t = "mouthmodule.wast"
+        //       , s = "mouthmodule.wasm"
+        //       , e = "mouthmodule.temp.asm.js";
+        //     q(t) || (t = p(t)),
+        //     q(s) || (s = p(s)),
+        //     q(e) || (e = p(e));
+        //     var u = {
+        //         global: null,
+        //         env: null,
+        //         asm2wasm: _,
+        //         parent: f
+        //     }
+        //       , l = null;
+        //     function h() {
+        //         try {
+        //             if (f.wasmBinary)
+        //                 return new Uint8Array(f.wasmBinary);
+        //             if (f.readBinary)
+        //                 return f.readBinary(s);
+        //             throw "both async and sync fetching of the wasm failed"
+        //         } catch (g) {
+        //             ot(g)
+        //         }
+        //     }
+        //     function c(t, e, r) {
+        //         if ("object" != typeof WebAssembly)
+        //             return g("no native wasm support detected"),
+        //             !1;
+        //         if (!(f.wasmMemory instanceof WebAssembly.Memory))
+        //             return g("no native wasm Memory in use"),
+        //             !1;
+        //         function n(t, e) {
+        //             (l = t.exports).memory && function n(t) {
+        //                 var e = f.buffer;
+        //                 t.byteLength < e.byteLength && g("the new buffer in mergeMemory is smaller than the previous one. in native wasm, we should grow memory here");
+        //                 var r = new Int8Array(e);
+        //                 new Int8Array(t).set(r),
+        //                 L(t),
+        //                 B()
+        //             }(l.memory),
+        //             f.asm = l,
+        //             f.usingWasm = !0,
+        //             function r(t) {
+        //                 if (W--,
+        //                 f.monitorRunDependencies && f.monitorRunDependencies(W),
+        //                 0 == W && (null !== Y && (clearInterval(Y),
+        //                 Y = null),
+        //                 z)) {
+        //                     var e = z;
+        //                     z = null,
+        //                     e()
+        //                 }
+        //             }()
+        //         }
+        //         if (e.memory = f.wasmMemory,
+        //         u.global = {
+        //             NaN: NaN,
+        //             Infinity: Infinity
+        //         },
+        //         u["global.Math"] = Math,
+        //         u.env = e,
+        //         function a(t) {
+        //             W++,
+        //             f.monitorRunDependencies && f.monitorRunDependencies(W)
+        //         }(),
+        //         f.instantiateWasm)
+        //             try {
+        //                 return f.instantiateWasm(u, n)
+        //             } catch (at) {
+        //                 return g("Module.instantiateWasm callback failed with error: " + at),
+        //                 !1
+        //             }
+        //         function i(t) {
+        //             n(t.instance, t.module)
+        //         }
+        //         function o(t) {
+        //             (function e() {
+        //                 return f.wasmBinary || !d && !m || "function" != typeof fetch ? new Promise(function(t, e) {
+        //                     t(h())
+        //                 }
+        //                 ) : fetch(s, {
+        //                     credentials: "same-origin"
+        //                 }).then(function(t) {
+        //                     if (!t.ok)
+        //                         throw "failed to load wasm binary file at '" + s + "'";
+        //                     return t.arrayBuffer()
+        //                 })["catch"](function() {
+        //                     return h()
+        //                 })
+        //             }
+        //             )().then(function(t) {
+        //                 return WebAssembly.instantiate(t, u)
+        //             }).then(t)["catch"](function(t) {
+        //                 g("failed to asynchronously prepare wasm: " + t),
+        //                 ot(t)
+        //             })
+        //         }
+        //         return f.wasmBinary || "function" != typeof WebAssembly.instantiateStreaming || q(s) || "function" != typeof fetch ? o(i) : WebAssembly.instantiateStreaming(fetch(s, {
+        //             credentials: "same-origin"
+        //         }), u).then(i)["catch"](function(t) {
+        //             g("wasm streaming compile failed: " + t),
+        //             g("falling back to ArrayBuffer instantiation"),
+        //             o(i)
+        //         }),
+        //         {}
+        //     }
+        //     f.asmPreload = f.asm,
+        //     f.reallocBuffer,
+        //     f.reallocBuffer = function(t) {
+        //         return function(t) {
+        //             t = I(t, f.usingWasm ? 65536 : 16777216);
+        //             var e = f.buffer.byteLength;
+        //             if (f.usingWasm)
+        //                 try {
+        //                     return -1 !== f.wasmMemory.grow((t - e) / 65536) ? f.buffer = f.wasmMemory.buffer : null
+        //                 } catch (at) {
+        //                     return null
+        //                 }
+        //         }(t)
+        //     }
+        //     ,
+        //     f.asm = function(t, e, r) {
+        //         if (!(e = function a(t) {
+        //             return t
+        //         }(e)).table) {
+        //             var n = f.wasmTableSize;
+        //             n === undefined && (n = 1024);
+        //             var i = f.wasmMaxTableSize;
+        //             "object" == typeof WebAssembly && "function" == typeof WebAssembly.Table ? i !== undefined ? e.table = new WebAssembly.Table({
+        //                 initial: n,
+        //                 maximum: i,
+        //                 element: "anyfunc"
+        //             }) : e.table = new WebAssembly.Table({
+        //                 initial: n,
+        //                 element: "anyfunc"
+        //             }) : e.table = new Array(n),
+        //             f.wasmTable = e.table
+        //         }
+        //         var o;
+        //         return e.memoryBase || (e.memoryBase = f.STATIC_BASE),
+        //         e.tableBase || (e.tableBase = 0),
+        //         T(o = c(0, e), "no binaryen method succeeded."),
+        //         o
+        //     }
+        // }(),
         D = 1059392,
         k.push(),
         f.STATIC_BASE = 1024,
