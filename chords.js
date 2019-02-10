@@ -5449,10 +5449,6 @@
         var ot = rt() || null === it.getExtension("OES_texture_float")
           , at = rt() ? 3e4 : 5e4
           , st = rt();
-        (function mt() {
-            return navigator.userAgent.match(/iPhone/i)
-        }
-        )() && (document.getElementById("silent-hint").className = "silent-hint-show");
         var ut = new et(ot,at,function(t) {
             document.getElementById("loading-fill").style.width = Math.round(100 * t).toFixed(0) + "%"
         }
