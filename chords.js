@@ -4209,8 +4209,17 @@
                             }, 300)
                         })(uiNote);
                     }
-                    CHORDS.synths[i].triggerAttackRelease(Tone.Frequency(notes[i] + this.transpose, 'midi').toNote(), '4n');
+
+                    if (i >= 0) {
+                        // CHORDS.synths[i].triggerAttackRelease(Tone.Frequency(notes[i] + this.transpose, 'midi').toNote(), '4n');
+                    }
                 }
+
+                var n0 = Tone.Frequency(notes[0] + this.transpose, 'midi').toNote()
+                var n1 = Tone.Frequency(notes[1] + this.transpose, 'midi').toNote()
+                var n2 = Tone.Frequency(notes[2] + this.transpose, 'midi').toNote()
+                var n3 = Tone.Frequency(notes[3] + this.transpose, 'midi').toNote()
+                CHORDS.polysynth.triggerAttackRelease([n0, n1, n2, n3], '4n');
             }
         }.bind(this));
 
@@ -4366,33 +4375,64 @@
         // TODO
         var CHORDS = {};
         window.CHORDS = CHORDS;
+
+        var melodyNote; // TODO
         CHORDS.activeMelodyNote = 67; // TODO
 
         CHORDS.synths = [
-            new Tone.Synth().toMaster(),
-            new Tone.Synth().toMaster(),
-            new Tone.Synth().toMaster(),
-            new Tone.Synth().toMaster()
+            new Tone.AMSynth().toMaster(),
+            new Tone.AMSynth().toMaster(),
+            new Tone.AMSynth().toMaster(),
+            new Tone.AMSynth().toMaster()
         ]
 
-        var notes = document.querySelector('.Notes');
+        // CHORDS.polysynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
+        CHORDS.polysynth = new Tone.PolySynth(4, Tone.AMSynth).toMaster();
+        // CHORDS.polysynth = new Tone.PolySynth(3, Tone.AMSynth).toMaster();
 
-        // TODO
-        notes.addEventListener('mousedown', (event) => {
-            var midiNote = parseInt(event.target.getAttribute('data-midi-number'), 10);
-            CHORDS.activeMelodyNote = midiNote;
-            CHORDS.synths[0].triggerAttackRelease(Tone.Frequency(notes[i] + this.transpose, 'midi').toNote(), '16n');
+        var surface = document.querySelector('.Surface');
+
+        var getNumber = function(el) {
+            return parseInt(el.getAttribute('data-midi-number'), 10)
+        };
+
+        var isMouseDown = false;
+
+        surface.addEventListener('mousedown', function(event){
+            isMouseDown = true;
+            CHORDS.activeMelodyNote = melodyNote = getNumber(event.target);
         });
 
-        // TODO
-        notes.addEventListener('mousemove', (event) => {
-            var midiNote = parseInt(event.target.getAttribute('data-midi-number'), 10);
-            CHORDS.activeMelodyNote = midiNote;
+        surface.addEventListener('mousemove', function(event){
+            // if (event.target.getAttribute('data-midi-number') && isMouseDown) {
+            if (event.target.getAttribute('data-midi-number')) {
+                CHORDS.activeMelodyNote = melodyNote = getNumber(event.target);
+            } else {
+                melodyNote = false;
+            }
         });
 
-        notes.addEventListener('mouseup', (event) => {
-            // TODO
+        surface.addEventListener('mouseup', function(event){
+            isMouseDown = false;
+            melodyNote = false;
         });
+
+        var lastMelodyNote;
+        var loop = function() {
+            if (lastMelodyNote === melodyNote && melodyNote) {
+                // CHORDS.synths[0].triggerAttack(Tone.Frequency(melodyNote + 4, 'midi').toNote());
+            } else if (lastMelodyNote) {
+                // CHORDS.synths[0].triggerRelease();
+            }
+
+            lastMelodyNote = melodyNote;
+
+            requestAnimationFrame(function(){
+                loop();
+            })
+        };
+
+        loop();
 
         this.startTime = Date.now();
         var r = Date.now();
